@@ -253,7 +253,7 @@ flowchart TD
 | 9.10 | Heaps & PriorityQueue | 🎬 [Video 56][v56] | |
 | 9.11 | **Top-K, K-way merge** 🔴 (📘 [DSA gap #6][d06]) · **Two Heaps** 🟡 (⬜) | 📘 / ⬜ | Heaps (9.10) + comparators (7.2) |
 | 9.12 | Huffman coding | 🎬 [Video 61][v61] | Heap + tree together; also your first greedy algorithm |
-| 9.13 | **Trie** 🔴 | ⬜ | A tree with a map/array of children; needs trees + hashing |
+| 9.13 | **Trie** 🔴 | 📘 [DSA topic #4][t04] | A tree with a map/array of children; needs trees + hashing |
 | 9.14 | Segment trees | 🎬 [Video 51][v51] | Range queries; recursion on arrays as a tree |
 | 9.15 | Sqrt decomposition & Mo's algorithm | 🎬 [Video 62][v62] | Another range-query technique; compare with 9.14 |
 
@@ -284,17 +284,17 @@ Placed **right before graphs and DP** on purpose: several graph algorithms *are*
 
 | Order | Topic | Source | Why here |
 |---|---|---|---|
-| 11.1 | Graph representation (adjacency list / matrix) 🔴 | ⬜ | Uses `List<List<Integer>>` and generics (7.1) |
-| 11.2 | BFS & DFS on graphs, connected components 🔴 | ⬜ | Same as tree BFS/DFS (9.2) plus a `visited` set |
-| 11.3 | Grid graphs: flood fill, number of islands, rotting oranges | ⬜ | Matrix traversal (4.6) + BFS/DFS (11.2); `record Cell(int r, int c)` from 7.5 |
+| 11.1 | Graph representation (adjacency list / matrix) 🔴 | 📘 [DSA topic #2, §1][t02] | Uses `List<List<Integer>>` and generics (7.1) |
+| 11.2 | BFS & DFS on graphs, connected components 🔴 | 📘 [DSA topic #2, §2–4][t02] | Same as tree BFS/DFS (9.2) plus a `visited` set |
+| 11.3 | Grid graphs: flood fill, number of islands, rotting oranges | 📘 [DSA topic #2, §5][t02] | Matrix traversal (4.6) + BFS/DFS (11.2); `record Cell(int r, int c)` from 7.5 |
 | 11.4 | Word Ladder (LC 127) | 🎬 [Video 65][v65] | The playlist's only graph problem: BFS on an implicit graph |
-| 11.5 | Cycle detection (undirected and directed) | ⬜ | DFS with colours / parent tracking |
-| 11.6 | **Topological sort** (Kahn's BFS and DFS) 🔴 | ⬜ | Needs directed cycle detection (11.5) |
-| 11.7 | Bipartite check | ⬜ | BFS/DFS colouring |
-| 11.8 | **Union-Find (DSU)**: union by rank, path compression 🔴 | ⬜ | Needed for Kruskal (11.10) |
-| 11.9 | **Dijkstra** 🔴, Bellman-Ford, Floyd-Warshall | ⬜ | Dijkstra = BFS + a heap with a comparator (9.10, 7.2) and is greedy (10.1). Bellman-Ford and Floyd-Warshall are DP in disguise, a nice bridge to phase 12 |
-| 11.10 | **MST**: Prim (heap) and Kruskal (DSU) 🔴 | ⬜ | Greedy + heap / DSU |
-| 11.11 | SCC (Kosaraju/Tarjan), bridges & articulation points 🟢 | ⬜ | Advanced DFS; lower priority |
+| 11.5 | Cycle detection (undirected and directed) | 📘 [DSA topic #2, §6][t02] | DFS with colours / parent tracking |
+| 11.6 | **Topological sort** (Kahn's BFS and DFS) 🔴 | 📘 [DSA topic #2, §7][t02] | Needs directed cycle detection (11.5) |
+| 11.7 | Bipartite check | 📘 [DSA topic #2, §8][t02] | BFS/DFS colouring |
+| 11.8 | **Union-Find (DSU)**: union by rank, path compression 🔴 | 📘 [DSA topic #3][t03] | Needed for Kruskal (11.10) |
+| 11.9 | **Dijkstra** 🔴, Bellman-Ford, Floyd-Warshall | 📘 [DSA topic #2, §9–10][t02] | Dijkstra = BFS + a heap with a comparator (9.10, 7.2) and is greedy (10.1). Bellman-Ford and Floyd-Warshall are DP in disguise, a nice bridge to phase 12 |
+| 11.10 | **MST**: Prim (heap) and Kruskal (DSU) 🔴 | 📘 [DSA topic #2, §11][t02] | Greedy + heap / DSU |
+| 11.11 | SCC (Kosaraju/Tarjan), bridges & articulation points 🟢 | 📘 [DSA topic #2, §13][t02] | Advanced DFS; lower priority |
 
 🧪 **Practice:** LC 733, 200, 994, 133, 547, 207, 210, 785, 684, 743, 787, 1584, 127.
 
@@ -328,16 +328,16 @@ flowchart LR
 
 | Order | Topic | Source | Problems |
 |---|---|---|---|
-| 12.1 | Memoisation vs tabulation vs space optimisation | ⬜ | LC 509, 70 |
-| 12.2 | 1D DP | ⬜ | LC 746, 198, 213, 91, 139 |
-| 12.3 | 0/1 knapsack and subset sum | ⬜ | LC 416, 494 |
-| 12.4 | Unbounded knapsack / coin change | ⬜ | LC 322, 518 |
-| 12.5 | Grid DP | ⬜ | LC 62, 63, 64, 120 |
-| 12.6 | LIS (O(n²), then O(n log n) with binary search from video 14) | ⬜ | LC 300, 354 |
-| 12.7 | String DP: LCS, edit distance, palindromes | ⬜ | LC 1143, 72, 5, 516 |
-| 12.8 | Partition / interval DP | ⬜ | LC 312, 1039, 132 |
-| 12.9 | DP on trees | ⬜ | LC 337, 124 |
-| 12.10 | Bitmask DP 🟢 | ⬜ | LC 698, 847 |
+| 12.1 | Memoisation vs tabulation vs space optimisation | 📘 [DSA topic #1, §1–2][t01] | LC 509, 70 |
+| 12.2 | 1D DP | 📘 [DSA topic #1, §3][t01] | LC 746, 198, 213, 91, 139 |
+| 12.3 | 0/1 knapsack and subset sum | 📘 [DSA topic #1, §4][t01] | LC 416, 494 |
+| 12.4 | Unbounded knapsack / coin change | 📘 [DSA topic #1, §5][t01] | LC 322, 518 |
+| 12.5 | Grid DP | 📘 [DSA topic #1, §6][t01] | LC 62, 63, 64, 120 |
+| 12.6 | LIS (O(n²), then O(n log n) with binary search from video 14) | 📘 [DSA topic #1, §7][t01] | LC 300, 354 |
+| 12.7 | String DP: LCS, edit distance, palindromes | 📘 [DSA topic #1, §8][t01] | LC 1143, 72, 5, 516 |
+| 12.8 | Partition / interval DP | 📘 [DSA topic #1, §9][t01] | LC 312, 1039, 132 |
+| 12.9 | DP on trees | 📘 [DSA topic #1, §10][t01] | LC 337, 124 |
+| 12.10 | Bitmask DP 🟢 | 📘 [DSA topic #1, §11][t01] | LC 698, 847 · plus state-machine stock DP (§12): LC 122, 309, 714 |
 
 > [!IMPORTANT]
 > Always solve a DP problem in three steps: **(1)** write the plain recursion (phase 5 style), **(2)** add memoisation, **(3)** convert to a bottom-up table and, if possible, keep only the last row or two. Jumping straight to a table is why DP feels hard.
@@ -567,3 +567,7 @@ Do these after the main path, depending on your goals.
 [d04]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_04_kadanes_algorithm.md
 [d05]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_05_merge_intervals.md
 [d06]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_06_top_k_k_way_merge.md
+[t01]: DSA%20Topics%20Not%20Covered%20Notes/dsa_topic_01_dynamic_programming.md
+[t02]: DSA%20Topics%20Not%20Covered%20Notes/dsa_topic_02_graphs.md
+[t03]: DSA%20Topics%20Not%20Covered%20Notes/dsa_topic_03_union_find.md
+[t04]: DSA%20Topics%20Not%20Covered%20Notes/dsa_topic_04_trie.md
