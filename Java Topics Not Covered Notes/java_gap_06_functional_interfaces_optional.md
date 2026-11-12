@@ -1,6 +1,6 @@
 # Functional Interfaces & Optional — Complete In-Depth Guide
 
-**Java gap topic #6 of 10** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #6 of 12** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
 
 [Video 42](../kunal-java-notes-claude/java_42_video_generics_lambdas_exceptions_cloning.md) shows lambdas with a custom interface. Real Java code uses the ready-made interfaces in `java.util.function` — `Function`, `Predicate`, `Consumer`, `Supplier` and friends — everywhere: streams, collections, `Optional`, `CompletableFuture`, `Map.computeIfAbsent`. These notes cover all of them, method references, composing functions, and `Optional`, Java's tool for "a value that might be missing".
 

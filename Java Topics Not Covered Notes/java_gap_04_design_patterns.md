@@ -1,6 +1,6 @@
 # Design Patterns — Complete In-Depth Guide
 
-**Java gap topic #4 of 10** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #4 of 12** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
 
 A **design pattern** is a proven, named solution to a problem that keeps coming up in object-oriented design. The playlist covers only **Singleton** ([video 38](../kunal-java-notes-claude/java_38_video_oop_static_packages_singleton.md)). These notes cover the patterns interviewers actually ask about, from the classic "Gang of Four" (GoF) book, each with the problem it solves, a diagram, runnable Java 21 code, and where the JDK itself uses it.
 

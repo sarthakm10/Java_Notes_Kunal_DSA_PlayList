@@ -1,6 +1,6 @@
 # Modern Java Features (Java 9–21) — Complete In-Depth Guide
 
-**Java gap topic #7 of 10** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #7 of 12** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
 
 The playlist was recorded with older Java and teaches the Java 8 way of writing code. Java has changed a lot since then: **records** replace boilerplate data classes, **sealed** types and **pattern matching** make `switch` far more powerful, `var` cuts noise, **text blocks** make multi-line strings readable, and Java 21 adds **virtual threads** and **sequenced collections**. These notes cover every feature you're likely to use or be asked about, with the version that introduced it.
 

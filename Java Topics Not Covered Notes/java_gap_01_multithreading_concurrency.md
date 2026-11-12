@@ -1,6 +1,6 @@
 # Multithreading & Concurrency — Complete In-Depth Guide
 
-**Java gap topic #1 of 10** · Priority 🔴 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #1 of 12** · Priority 🔴 · from [topics_not_covered.md](../topics_not_covered.md)
 
 The playlist only touches thread safety when it compares `Vector` with `ArrayList` ([video 43](../kunal-java-notes-claude/java_43_video_collections_vector_enums.md)). These notes cover everything a Java interview expects: creating threads, the thread lifecycle, race conditions, `synchronized`, `volatile`, `wait`/`notify`, deadlock, locks, atomics, thread pools, `CompletableFuture`, concurrent collections, synchronizers and Java 21 virtual threads.
 

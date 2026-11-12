@@ -1,6 +1,6 @@
 # Comparator & Comparable — Complete In-Depth Guide
 
-**Java gap topic #3 of 10** · Priority 🔴 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #3 of 12** · Priority 🔴 · from [topics_not_covered.md](../topics_not_covered.md)
 
 Sorting numbers is easy (`Arrays.sort`, covered in videos 17–31). Sorting **objects** — students by marks, intervals by start time, tasks by priority in a `PriorityQueue` — needs you to tell Java *how to compare two objects*. That's what `Comparable` and `Comparator` do. These notes cover both, the modern `Comparator.comparing` API, multi-key sorting, nulls, and the DSA patterns that depend on them.
 

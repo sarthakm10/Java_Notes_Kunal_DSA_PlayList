@@ -1,6 +1,6 @@
 # Iterator, Iterable & Fail-Fast vs Fail-Safe — Complete In-Depth Guide
 
-**Java gap topic #10 of 10** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #10 of 12** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
 
 Every `for (x : list)` loop in the playlist secretly uses an **`Iterator`**. Knowing how iterators work explains the dreaded `ConcurrentModificationException`, the right way to remove elements while looping, how to make your own classes work with for-each, and the classic interview question "fail-fast vs fail-safe iterators". These notes also cover `ListIterator`, `Spliterator`, and the iterator-design problems on LeetCode (BST Iterator, Peeking Iterator, Flatten Nested List).
 

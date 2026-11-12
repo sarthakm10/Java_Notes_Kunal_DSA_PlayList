@@ -140,7 +140,7 @@ flowchart TD
 | 4.3 | **Prefix Sum / Difference Array** 🔴 | 📘 [DSA gap #3][d03] | Needs arrays + `HashMap` (for LC 560) |
 | 4.4 | **Kadane's Algorithm** 🔴 | 📘 [DSA gap #4][d04] | A first taste of "best answer ending here", the core idea of DP later |
 | 4.5 | **Sliding Window** — fixed size first, then variable size 🔴 | 📘 [DSA gap #1][d01] | Builds on two pointers (4.2) and map counting (4.1). Fixed windows are simple; variable windows need the "expand right, shrink left" idea |
-| 4.6 | **Matrix traversal** (spiral, rotate, set zeroes) 🟡 | ⬜ | 2D arrays from phase 2. Flood fill / islands wait until phase 11 (they're graph BFS/DFS) |
+| 4.6 | **Matrix traversal** (spiral, rotate, set zeroes) 🟡 | 📘 [DSA gap #11][d11] | 2D arrays from phase 2. Flood fill / islands wait until phase 11 (they're graph BFS/DFS) |
 
 🧪 **Practice in this order:**
 
@@ -174,7 +174,7 @@ flowchart TD
 | 5.10 | Dice & phone letters (LC 17, 1155) | 🎬 [Video 34][v34] | Contains the first memoised solution — remember it for DP |
 | 5.11 | Backtracking: maze | 🎬 [Video 35][v35] | |
 | 5.12 | N-Queens, N-Knights, Sudoku | 🎬 [Video 36][v36] | |
-| 5.13 | **Combination-style backtracking** (Combination Sum, Word Search, Palindrome Partitioning) 🟡 | ⬜ | Same skeleton as 5.8–5.12, with a start index to avoid duplicates |
+| 5.13 | **Combination-style backtracking** (Combination Sum, Word Search, Palindrome Partitioning) 🟡 | 📘 [DSA gap #12][d12] | Same skeleton as 5.8–5.12, with a start index to avoid duplicates |
 
 🧪 **Practice:** LC 78, 90, 46, 47, 39, 40, 79, 131, 51, 37.
 
@@ -227,10 +227,10 @@ flowchart TD
 | 8.3 | Iterator, Iterable, fail-fast vs fail-safe 🟡 | 📘 [Gap #10][g10] | Make your own linked list work with for-each; explains `ConcurrentModificationException` |
 | 8.4 | Stacks & queues | 🎬 [Video 46][v46] | |
 | 8.5 | Stack/queue questions (LC 232, 20, 84, 921, 1541) | 🎬 [Video 47][v47] | |
-| 8.6 | **Monotonic Stack** in depth 🟡 | ⬜ | Video 47's histogram problem (LC 84) is the hardest one; these are the easier ones that should come first |
-| 8.7 | **Monotonic Deque** (Sliding Window Maximum) 🟡 | ⬜ | Sliding window (phase 4) + deque (8.4) |
+| 8.6 | **Monotonic Stack** in depth 🟡 | 📘 [DSA gap #8][d08] | Video 47's histogram problem (LC 84) is the hardest one; these are the easier ones that should come first |
+| 8.7 | **Monotonic Deque** (Sliding Window Maximum) 🟡 | 📘 [DSA gap #9][d09] | Sliding window (phase 4) + deque (8.4) |
 | 8.8 | HashMap & HashTable internals: hashing, chaining, open addressing | 🎬 [Video 57][v57] | The rest of video 57; needs `equals`/`hashCode` (video 40) |
-| 8.9 | **LRU / LFU Cache** 🟡 | ⬜ | HashMap (8.8) + doubly linked list (8.1). Gap #7 also shows the `LinkedHashMap` shortcut |
+| 8.9 | **LRU / LFU Cache** 🟡 | 📘 [DSA gap #13][d13] | HashMap (8.8) + doubly linked list (8.1). Gap #7 also shows the `LinkedHashMap` shortcut |
 | 8.10 | Karp-Rabin (rolling hash) | 🎬 [Video 58][v58] | Hashing applied to strings |
 
 🧪 **Practice:** LC 206, 21, 141, 142, 876, 19, 155, 20, 739, 496, 503, 239, 146.
@@ -251,7 +251,7 @@ flowchart TD
 | 9.8 | Recover BST (LC 99) | 🎬 [Video 69][v69] | |
 | 9.9 | AVL trees | 🎬 [Video 50][v50] | Self-balancing; good to understand, rarely coded in interviews |
 | 9.10 | Heaps & PriorityQueue | 🎬 [Video 56][v56] | |
-| 9.11 | **Top-K, K-way merge** 🔴 (📘 [DSA gap #6][d06]) · **Two Heaps** 🟡 (⬜) | 📘 / ⬜ | Heaps (9.10) + comparators (7.2) |
+| 9.11 | **Top-K, K-way merge** 🔴 · **Two Heaps** 🟡 | 📘 [DSA gap #6][d06] · [#7][d07] | Heaps (9.10) + comparators (7.2) |
 | 9.12 | Huffman coding | 🎬 [Video 61][v61] | Heap + tree together; also your first greedy algorithm |
 | 9.13 | **Trie** 🔴 | 📘 [DSA topic #4][t04] | A tree with a map/array of children; needs trees + hashing |
 | 9.14 | Segment trees | 🎬 [Video 51][v51] | Range queries; recursion on arrays as a tree |
@@ -270,8 +270,8 @@ Placed **right before graphs and DP** on purpose: several graph algorithms *are*
 
 | Order | Topic | Source | Why here |
 |---|---|---|---|
-| 10.1 | **Greedy** in general: exchange argument, activity selection, interval scheduling 🟡 | ⬜ | Needs sorting with comparators (7.2) and heaps (9.10). Huffman (9.12) was a first example |
-| 10.2 | **Maths extras**: fast power, modular inverse, nCr / Pascal's triangle 🟢 | ⬜ | Builds on video 26's modulo rules and video 25's bits (binary exponentiation). DP counting problems use `% 1_000_000_007` and nCr |
+| 10.1 | **Greedy** in general: exchange argument, activity selection, interval scheduling 🟡 | 📘 [DSA gap #10][d10] | Needs sorting with comparators (7.2) and heaps (9.10). Huffman (9.12) was a first example |
+| 10.2 | **Maths extras**: fast power, modular inverse, nCr / Pascal's triangle 🟢 | 📘 [DSA gap #16][d16] | Builds on video 26's modulo rules and video 25's bits (binary exponentiation). DP counting problems use `% 1_000_000_007` and nCr |
 
 🧪 **Practice:** LC 455, 55, 45, 134, 763, 435 (again, now as greedy), 50 (Pow(x, n)), 118 (Pascal's triangle).
 
@@ -382,10 +382,10 @@ Do these after the main path, depending on your goals.
 
 | Topic | Source | Priority | Depends on |
 |---|---|---|---|
-| String algorithms: KMP, Z-algorithm, Manacher | ⬜ | 🟢 | Karp-Rabin (8.10), DP-style thinking |
-| Fenwick tree (BIT), lazy segment tree, sparse table | ⬜ | 🟢 | Segment trees (9.14), bits (2.8) |
-| Serialization, Reflection, Regex, `java.time` | ⬜ | 🟢 | OOP, file handling (6.10) |
-| JUnit, Maven/Gradle, JDBC | ⬜ | 🟢 | Real projects rather than interviews |
+| String algorithms: KMP, Z-algorithm, Manacher | 📘 [DSA gap #14][d14] | 🟢 | Karp-Rabin (8.10), DP-style thinking |
+| Fenwick tree (BIT), lazy segment tree, sparse table | 📘 [DSA gap #15][d15] | 🟢 | Segment trees (9.14), bits (2.8) |
+| Serialization, Reflection, Regex, `java.time` | 📘 [Gap #11][g11] | 🟢 | OOP, file handling (6.10) |
+| JUnit, Maven/Gradle, JDBC | 📘 [Gap #12][g12] | 🟢 | Real projects rather than interviews |
 
 ---
 
@@ -480,7 +480,7 @@ Do these after the main path, depending on your goals.
 - [ ] Gap #5 SOLID · Gap #4 Design Patterns · Gap #1 Multithreading · Gap #9 JVM & GC · LLD practice
 
 **Phase 13 — Optional**
-- [ ] KMP / Z / Manacher · Fenwick / lazy segment tree / sparse table · Serialization, Reflection, Regex, `java.time` · JUnit, Maven, JDBC
+- [ ] KMP / Z / Manacher · Fenwick / lazy segment tree / sparse table · Gap #11 Serialization, Reflection, Regex, `java.time` · Gap #12 JUnit, Maven, JDBC
 
 [v04]: kunal-java-notes-claude/java_04_video_git_github.md
 [v05]: kunal-java-notes-claude/java_05_video_intro_programming.md
@@ -571,3 +571,15 @@ Do these after the main path, depending on your goals.
 [t02]: DSA%20Topics%20Not%20Covered%20Notes/dsa_topic_02_graphs.md
 [t03]: DSA%20Topics%20Not%20Covered%20Notes/dsa_topic_03_union_find.md
 [t04]: DSA%20Topics%20Not%20Covered%20Notes/dsa_topic_04_trie.md
+[d07]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_07_two_heaps.md
+[d08]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_08_monotonic_stack.md
+[d09]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_09_monotonic_deque.md
+[d10]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_10_greedy.md
+[d11]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_11_matrix_traversal.md
+[d12]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_12_combination_backtracking.md
+[d13]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_13_lru_lfu_cache.md
+[d14]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_14_string_algorithms.md
+[d15]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_15_range_query_structures.md
+[d16]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_16_maths_extras.md
+[g11]: Java%20Topics%20Not%20Covered%20Notes/java_gap_11_serialization_reflection_regex_time.md
+[g12]: Java%20Topics%20Not%20Covered%20Notes/java_gap_12_junit_maven_gradle_jdbc.md

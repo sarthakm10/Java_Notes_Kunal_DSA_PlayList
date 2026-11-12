@@ -1,6 +1,6 @@
 # Streams API — Complete In-Depth Guide
 
-**Java gap topic #2 of 10** · Priority 🔴 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #2 of 12** · Priority 🔴 · from [topics_not_covered.md](../topics_not_covered.md)
 
 [Video 42](../kunal-java-notes-claude/java_42_video_generics_lambdas_exceptions_cloning.md) teaches lambdas but never really uses streams. A **stream** is a pipeline that takes data from a source, transforms it step by step, and produces a result, written in a declarative "what, not how" style. These notes go from `filter`/`map` up to `groupingBy`, `flatMap`, `reduce`, primitive streams, parallel streams and the Java 9–21 additions.
 

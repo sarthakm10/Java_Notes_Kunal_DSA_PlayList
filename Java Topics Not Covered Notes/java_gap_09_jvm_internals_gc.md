@@ -1,6 +1,6 @@
 # JVM Internals & Garbage Collection — Complete In-Depth Guide
 
-**Java gap topic #9 of 10** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #9 of 12** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
 
 [Video 7](../kunal-java-notes-claude/java_07_video_java_architecture.md) introduces JDK, JRE and JVM, and [video 5](../kunal-java-notes-claude/java_05_video_intro_programming.md) explains stack, heap and garbage collection at a beginner level. These notes go under the hood: how classes are loaded, what memory areas the JVM really has, how the JIT compiler makes Java fast, how garbage collectors work (generations, G1, ZGC), reference types, memory leaks, `OutOfMemoryError`s, tuning flags and the diagnostic tools.
 

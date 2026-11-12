@@ -1,6 +1,6 @@
 # SOLID Principles & Low-Level Design — Complete In-Depth Guide
 
-**Java gap topic #5 of 10** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #5 of 12** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
 
 The OOP videos (37–41) teach the *tools*: classes, inheritance, polymorphism, abstraction, interfaces. **SOLID** is five rules for using those tools so code stays easy to change. **Low-level design (LLD)** is the interview round where you design the classes for a system like a parking lot or a library. These notes cover each SOLID principle with a "bad → good" refactor, the other key principles (DRY, KISS, YAGNI, Law of Demeter), class relationships, and a step-by-step method for LLD rounds.
 

@@ -1,6 +1,6 @@
 # Generics in Depth — Complete In-Depth Guide
 
-**Java gap topic #8 of 10** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
+**Java gap topic #8 of 12** · Priority 🟡 · from [topics_not_covered.md](../topics_not_covered.md)
 
 [Video 42](../kunal-java-notes-claude/java_42_video_generics_lambdas_exceptions_cloning.md) shows the basics: a generic class `CustomArrayList<T>` and why `<T>` beats `Object`. Interviews and real code go further: **bounded types**, **wildcards** (`? extends`, `? super`), the **PECS** rule, **type erasure** and its consequences, generic methods, and why you can't write `new T[]`. These notes cover all of it.
 
