@@ -1,9 +1,14 @@
 # Java + DSA Study Roadmap — Covered and Not-Covered Topics in One Order
 
-**What this is:** one study order that mixes the **69 playlist videos** (notes in [`kunal-java-notes-claude/`](kunal-java-notes-claude/)) with the **topics the playlist doesn't teach** (from [topics_not_covered.md](topics_not_covered.md), notes in [`Java Topics Not Covered Notes/`](Java%20Topics%20Not%20Covered%20Notes/) and [`DSA Topics Not Covered Notes/`](DSA%20Topics%20Not%20Covered%20Notes/)). Each topic comes **after everything it depends on**, and Java and DSA topics are interleaved so that each Java feature is learned just before the DSA code that needs it.
+**What this is:** one study order that mixes the **playlist videos** (notes in [`kunal-java-notes-claude/`](kunal-java-notes-claude/); video 22, pattern printing, is left out) with the **topics the playlist doesn't teach** (from [topics_not_covered.md](topics_not_covered.md), notes in [`Java Topics Not Covered Notes/`](Java%20Topics%20Not%20Covered%20Notes/) and [`DSA Topics Not Covered Notes/`](DSA%20Topics%20Not%20Covered%20Notes/)). Each topic comes **after everything it depends on**, and Java and DSA topics are interleaved so that each Java feature is learned just before the DSA code that needs it.
 
 > [!NOTE]
 > The playlist's own order is mostly kept. Topics are moved only when a dependency demands it. For example, the second half of video 24 (recurrence relations) needs recursion, Sliding Window needs `HashMap`, and Top-K heap problems need `Comparator`. Every move is explained in the **Why here** column.
+
+> [!TIP]
+> **Practice list:** [dsa_practice_sheet.md](dsa_practice_sheet.md) has 431 problems (Striver's A2Z sheet) grouped by pattern, with LeetCode links, links to these notes and a checkbox for each problem. Use it alongside the 🧪 **Practice** lines below.
+>
+> **Study site:** double-click `index.html` in this folder. It shows this roadmap with tick boxes and the practice problems grouped by the topics below; note links open on GitHub.
 
 **Legend:**
 | Mark | Meaning |
@@ -44,14 +49,14 @@
 
 ```mermaid
 flowchart TD
-    P1["1. Java Foundations<br/>videos 4–11"]:::good --> P2["2. Arrays, Strings, Search,<br/>Bits, Maths · videos 12–16, 21–22, 25–26"]:::good
+    P1["1. Java Foundations<br/>videos 4–11"]:::good --> P2["2. Arrays, Strings, Search,<br/>Bits, Maths · videos 12–16, 21, 25–26"]:::good
     P2 --> P3["3. Sorting + Complexity basics<br/>videos 17–20, 24 part 1, 59–60"]:::good
     P3 --> P4["4. Array/String Patterns<br/>Two Pointers, Prefix Sum, Kadane,<br/>Sliding Window, Matrix"]:::highlight
     P4 --> P5["5. Recursion + Backtracking<br/>videos 23, 24 part 2, 27–36"]:::good
     P5 --> P6["6. OOP + Core Java<br/>videos 37–43, 52–54, 48"]:::good
     P6 --> P7["7. Java 8+ Features<br/>Generics, Comparator, Lambdas,<br/>Optional, Streams, Modern Java"]:::process
     P7 --> P8["8. Linked List, Stack, Queue,<br/>Hashing · videos 44–47, 57–58"]:::good
-    P8 --> P9["9. Trees, Heaps, Tries<br/>videos 49–51, 55–56, 61–69"]:::good
+    P8 --> P9["9. Trees, Heaps, Tries<br/>videos 49–51, 55–56, 61, 63–69"]:::good
     P9 --> P10["10. Greedy + Maths extras"]:::highlight
     P10 --> P11["11. Graphs + Union-Find"]:::highlight
     P11 --> P12["12. Dynamic Programming"]:::bad
@@ -100,19 +105,24 @@ flowchart TD
 
 ## Phase 2: Arrays, Strings, Searching, Bits and Maths
 
+> [!TIP]
+> **Before this phase:** read [video 24, sections 0–5][v24bigo] (what time complexity is, how to analyse a loop, Big-O; about 45 minutes). You need it to judge whether a solution here is fast enough, and to see why binary search (O(log n)) beats linear search (O(n)). The rest of sections 0–12 comes in phase 3.
+
 | Order | Topic | Source | Why here |
 |---|---|---|---|
 | 2.1 | Arrays & ArrayList | 🎬 [Video 12][v12] | The base of almost every DSA problem |
 | 2.2 | Strings & StringBuilder | 🎬 [Video 21][v21] | Moved earlier than in the playlist: string problems (palindromes, sliding window) need it, and it only depends on arrays |
-| 2.3 | Patterns (nested loops) | 🎬 [Video 22][v22] | Pure loop practice; also moved earlier |
-| 2.4 | Linear search | 🎬 [Video 13][v13] | |
-| 2.5 | Binary search | 🎬 [Video 14][v14] | |
-| 2.6 | Binary search questions (LC 35, 744, 34, 33, 153, 410…) | 🎬 [Video 15][v15] | |
-| 2.7 | Binary search in 2D (LC 240, 74) | 🎬 [Video 16][v16] | |
-| 2.8 | Bitwise operators & number systems | 🎬 [Video 25][v25] | Only needs loops; moved earlier so bit tricks are available later (bitmask DP uses them) |
-| 2.9 | Maths: primes, sieve, sqrt, GCD/LCM, modulo | 🎬 [Video 26][v26] | Square root uses binary search (2.5), so it comes after it |
+| 2.3 | Linear search | 🎬 [Video 13][v13] | |
+| 2.4 | Binary search | 🎬 [Video 14][v14] | |
+| 2.5 | Binary search questions (LC 35, 744, 34, 33, 153, 410…) | 🎬 [Video 15][v15] | |
+| 2.6 | Binary search in 2D (LC 240, 74) | 🎬 [Video 16][v16] | |
+| 2.7 | Bitwise operators & number systems | 🎬 [Video 25][v25] | Only needs loops; moved earlier so bit tricks are available later (bitmask DP uses them) |
+| 2.8 | Maths: primes, sieve, sqrt, GCD/LCM, modulo | 🎬 [Video 26][v26] | Square root uses binary search (2.4), so it comes after it |
 
 🧪 **Practice:** LC 704, 35, 69 (sqrt), 875 (Koko, binary search on the answer), 136 (Single Number), 191, 338, 204 (Count Primes).
+
+> [!NOTE]
+> **Don't get stuck on the hard binary-search problems here.** Topic 2.5's practice list has 20 problems. Do the Easy and Medium ones now (rotated arrays, peak element, Koko LC 875, LC 1011, LC 1482). Leave the Hard and sheet-"Pro" ones until after phase 4: median of two sorted arrays (LC 4), k-th element of two sorted arrays, Split Array Largest Sum (LC 410), gas stations (LC 774), Aggressive Cows, Book Allocation and Painter's Partition. By then, turning a problem into "find the smallest value that works" comes more easily.
 
 ---
 
@@ -124,7 +134,7 @@ flowchart TD
 | 3.2 | Selection sort | 🎬 [Video 18][v18] | |
 | 3.3 | Insertion sort | 🎬 [Video 19][v19] | |
 | 3.4 | Cyclic sort (LC 268, 448, 287, 442, 645, 41) | 🎬 [Video 20][v20] | |
-| 3.5 | Time & space complexity — **sections 0–12 only** (Big-O, Ω, Θ, space, sorting complexity) | 🎬 [Video 24][v24] | You now have loops and sorts to analyse. **Stop before section 13**: the recurrence-relation half needs recursion (phase 5) |
+| 3.5 | Time & space complexity — **sections 6–12** (Ω, Θ, little-o/ω, space, sorting complexity; sections 0–5 were read before phase 2) | 🎬 [Video 24][v24] | You now have loops and sorts to analyse. **Stop before section 13**: the recurrence-relation half needs recursion (phase 5) |
 | 3.6 | Count sort | 🎬 [Video 59][v59] | Only needs arrays; a good contrast to comparison sorts |
 | 3.7 | Radix sort | 🎬 [Video 60][v60] | Built on count sort |
 
@@ -186,6 +196,9 @@ flowchart TD
 
 ## Phase 6: OOP and Core Java
 
+> [!TIP]
+> **Phases 6 and 7 have no new DSA.** Keep solving 2–3 problems a week from phases 4 and 5 (re-solve old ones without looking) so the patterns don't fade before linked lists in phase 8. Linked lists need only 6.1 (classes and objects), so you can also start 8.1–8.2 early.
+
 | Order | Topic | Source | Why here |
 |---|---|---|---|
 | 6.1 | OOP 1: classes, objects, constructors | 🎬 [Video 37][v37] | Needed for linked lists and trees (`Node` classes) |
@@ -230,8 +243,8 @@ flowchart TD
 | 8.2 | Linked list questions: fast/slow pointers, reversal, merge | 🎬 [Video 45][v45] | Fast/slow pointers = the two-pointer idea from phase 4 |
 | 8.3 | Iterator, Iterable, fail-fast vs fail-safe 🟡 | 📘 [Gap #10][g10] | Make your own linked list work with for-each; explains `ConcurrentModificationException` |
 | 8.4 | Stacks & queues | 🎬 [Video 46][v46] | |
-| 8.5 | Stack/queue questions (LC 232, 20, 84, 921, 1541) | 🎬 [Video 47][v47] | |
-| 8.6 | **Monotonic Stack** in depth 🟡 | 📘 [DSA gap #8][d08] | Video 47's histogram problem (LC 84) is the hardest one; these are the easier ones that should come first |
+| 8.5 | **Monotonic Stack** in depth 🟡 | 📘 [DSA gap #8][d08] | Needs only a stack (8.4). The easier next-greater-element problems (LC 496, 739, 503) come before video 47's hardest one, the histogram (LC 84) |
+| 8.6 | Stack/queue questions (LC 232, 20, 84, 921, 1541) | 🎬 [Video 47][v47] | LC 84 is a monotonic stack problem: with 8.5 done it's a variation, not a surprise |
 | 8.7 | **Monotonic Deque** (Sliding Window Maximum) 🟡 | 📘 [DSA gap #9][d09] | Sliding window (phase 4) + deque (8.4) |
 | 8.8 | HashMap & HashTable internals: hashing, chaining, open addressing | 🎬 [Video 57][v57] | The rest of video 57; needs `equals`/`hashCode` (video 40) |
 | 8.9 | **LRU / LFU Cache** 🟡 | 📘 [DSA gap #13][d13] | HashMap (8.8) + doubly linked list (8.1). Gap #7 also shows the `LinkedHashMap` shortcut |
@@ -258,8 +271,7 @@ flowchart TD
 | 9.11 | **Top-K, K-way merge** 🔴 · **Two Heaps** 🟡 | 📘 [DSA gap #6][d06] · [#7][d07] | Heaps (9.10) + comparators (7.2) |
 | 9.12 | Huffman coding | 🎬 [Video 61][v61] | Heap + tree together; also your first greedy algorithm |
 | 9.13 | **Trie** 🔴 | 📘 [DSA topic #4][t04] | A tree with a map/array of children; needs trees + hashing |
-| 9.14 | Segment trees | 🎬 [Video 51][v51] | Range queries; recursion on arrays as a tree |
-| 9.15 | Sqrt decomposition & Mo's algorithm | 🎬 [Video 62][v62] | Another range-query technique; compare with 9.14 |
+| 9.14 | Segment trees 🟢 | 🎬 [Video 51][v51] | Range queries; recursion on arrays as a tree. Asked less often than everything above it in this phase (LC 307 is the classic one) |
 
 🧪 **Practice:** LC 104, 102, 226, 543, 236, 98, 230, 105, 297, 215, 347, 23, 295, 973, 208, 211, 307.
 
@@ -320,6 +332,7 @@ flowchart LR
     D1 --> KN["0/1 and unbounded<br/>knapsack"]:::highlight
     D1 --> STR["Strings: LCS, edit distance,<br/>palindromes"]:::highlight
     D1 --> G["Grid DP"]:::highlight
+    D1 --> STK["Stock problems<br/>state machine"]:::highlight
     KN --> LIS["LIS<br/>+ binary search version"]:::highlight
     STR --> PART["Partition / interval DP"]:::bad
     T["Trees<br/>video 55"]:::good --> TD["DP on trees"]:::bad
@@ -339,9 +352,10 @@ flowchart LR
 | 12.5 | Grid DP | 📘 [DSA topic #1, §6][t01] | LC 62, 63, 64, 120 |
 | 12.6 | LIS (O(n²), then O(n log n) with binary search from video 14) | 📘 [DSA topic #1, §7][t01] | LC 300, 354 |
 | 12.7 | String DP: LCS, edit distance, palindromes | 📘 [DSA topic #1, §8][t01] | LC 1143, 72, 5, 516 |
-| 12.8 | Partition / interval DP | 📘 [DSA topic #1, §9][t01] | LC 312, 1039, 132 |
-| 12.9 | DP on trees | 📘 [DSA topic #1, §10][t01] | LC 337, 124 |
-| 12.10 | Bitmask DP 🟢 | 📘 [DSA topic #1, §11][t01] | LC 698, 847 · plus state-machine stock DP (§12): LC 122, 309, 714 |
+| 12.8 | **Stock problems** (state-machine DP) 🔴 | 📘 [DSA topic #1, §12][t01] | LC 121, 122, 123, 188, 309, 714 |
+| 12.9 | Partition / interval DP | 📘 [DSA topic #1, §9][t01] | LC 312, 1039, 132 |
+| 12.10 | DP on trees | 📘 [DSA topic #1, §10][t01] | LC 337, 124 |
+| 12.11 | Bitmask DP 🟢 | 📘 [DSA topic #1, §11][t01] | LC 698, 847 |
 
 > [!IMPORTANT]
 > Always solve a DP problem in three steps: **(1)** write the plain recursion (phase 5 style), **(2)** add memoisation, **(3)** convert to a bottom-up table and, if possible, keep only the last row or two. Jumping straight to a table is why DP feels hard.
@@ -387,7 +401,8 @@ Do these after the main path, depending on your goals.
 | Topic | Source | Priority | Depends on |
 |---|---|---|---|
 | String algorithms: KMP, Z-algorithm, Manacher | 📘 [DSA gap #14][d14] | 🟢 | Karp-Rabin (8.10), DP-style thinking |
-| Fenwick tree (BIT), lazy segment tree, sparse table | 📘 [DSA gap #15][d15] | 🟢 | Segment trees (9.14), bits (2.8) |
+| Fenwick tree (BIT), lazy segment tree, sparse table | 📘 [DSA gap #15][d15] | 🟢 | Segment trees (9.14), bits (2.7) |
+| Sqrt decomposition & Mo's algorithm | 🎬 [Video 62][v62] | 🟢 | Segment trees (9.14). Competitive-programming technique; rarely asked in interviews |
 | Serialization, Reflection, Regex, `java.time` | 📘 [Gap #11][g11] | 🟢 | OOP, file handling (6.10) |
 | JUnit, Maven/Gradle, JDBC | 📘 [Gap #12][g12] | 🟢 | Real projects rather than interviews |
 
@@ -446,12 +461,16 @@ For Java backend jobs and internships, after the core path. Start once you've do
 
 | Decision | Reason |
 |---|---|
-| Strings (21) and patterns (22) moved up to phase 2 | They only need arrays and loops, and string problems are needed for sliding window in phase 4 |
+| Strings (21) moved up to phase 2 | It only needs arrays and loops, and string problems are needed for sliding window in phase 4 |
 | Bitwise (25) and maths (26) moved up to phase 2 | Only need loops (and binary search for sqrt); bit tricks are used much later in bitmask DP |
 | Video 24 split in two | Sections 0–12 analyse loops and sorts; sections 13+ analyse recursion, which you haven't learned yet in phase 3 |
 | Array patterns (phase 4) before recursion | They're the most-asked interview topics and need nothing beyond arrays and a map |
 | Java 8+ features (phase 7) **before** linked lists, trees, graphs and DP | Easier than the remaining DSA, needed for Java interviews anyway, and the later DSA code uses comparators, lambdas, generics and records |
 | Tree questions (55) right after trees (49) | The playlist puts AVL (50) and segment trees (51) in between, but tree BFS/DFS is more important and leads straight to graphs |
+| Big-O basics (video 24 §0–5) before phase 2 | Searching is the first place where the complexity of a solution matters |
+| Monotonic stack (gap #8) before video 47 | Video 47 ends with LC 84, the hardest monotonic-stack problem; the easier ones build up to it |
+| Sqrt decomposition / Mo's (62) moved to phase 13 | Competitive-programming topic, rarely asked in interviews |
+| Stock problems as their own DP topic | Asked often and easier than interval, tree and bitmask DP |
 | Greedy before graphs and DP | Dijkstra, Prim and Kruskal are greedy; DP is easiest to understand as "where greedy fails" |
 | Graphs before DP | Graph traversal is a direct extension of tree traversal; DP is the hardest topic and benefits from all the earlier practice |
 | Advanced Java as a parallel track | Not a prerequisite for any DSA topic; spreading it out avoids burnout |
@@ -464,7 +483,7 @@ For Java backend jobs and internships, after the core path. Start once you've do
 - [ ] Videos 4, 5, 6, 7, 8, 9, 10, 11
 
 **Phase 2 — Arrays, strings, searching, bits, maths**
-- [ ] Videos 12, 21, 22, 13, 14, 15, 16, 25, 26
+- [ ] Videos 12, 21, 13, 14, 15, 16, 25, 26
 
 **Phase 3 — Sorting and complexity basics**
 - [ ] Videos 17, 18, 19, 20
@@ -488,14 +507,14 @@ For Java backend jobs and internships, after the core path. Start once you've do
 - [ ] Merge intervals
 
 **Phase 8 — Linked lists, stacks, queues, hashing**
-- [ ] Videos 44, 45 · Gap #10 Iterator · Videos 46, 47
-- [ ] Monotonic stack · Monotonic deque
+- [ ] Videos 44, 45 · Gap #10 Iterator · Video 46
+- [ ] Monotonic stack · Video 47 · Monotonic deque
 - [ ] Video 57 (full) · LRU/LFU · Video 58
 
 **Phase 9 — Trees, heaps, tries**
 - [ ] Videos 49, 55, 63, 64, 66, 67, 68, 69, 50, 56
 - [ ] Top-K / K-way merge / Two heaps
-- [ ] Video 61 · Trie · Videos 51, 62
+- [ ] Video 61 · Trie · Video 51
 
 **Phase 10 — Greedy and maths extras**
 - [ ] Greedy · Fast power, modular inverse, nCr
@@ -505,13 +524,13 @@ For Java backend jobs and internships, after the core path. Start once you've do
 - [ ] Union-Find · Dijkstra / Bellman-Ford / Floyd-Warshall · MST · SCC & bridges
 
 **Phase 12 — Dynamic programming**
-- [ ] Memo vs tabulation · 1D · 0/1 knapsack · Unbounded knapsack · Grid · LIS · String DP · Partition DP · Tree DP · Bitmask DP
+- [ ] Memo vs tabulation · 1D · 0/1 knapsack · Unbounded knapsack · Grid · LIS · String DP · Stock DP · Partition DP · Tree DP · Bitmask DP
 
 **Parallel — Advanced Java**
 - [ ] Gap #5 SOLID · Gap #4 Design Patterns · Gap #1 Multithreading · Gap #9 JVM & GC · LLD practice
 
 **Phase 13 — Optional**
-- [ ] KMP / Z / Manacher · Fenwick / lazy segment tree / sparse table · Gap #11 Serialization, Reflection, Regex, `java.time` · Gap #12 JUnit, Maven, JDBC
+- [ ] KMP / Z / Manacher · Fenwick / lazy segment tree / sparse table · Video 62 Sqrt decomposition & Mo's · Gap #11 Serialization, Reflection, Regex, `java.time` · Gap #12 JUnit, Maven, JDBC
 
 **Track — Spring Boot**
 - [ ] Spring #1 Maven · Spring #2 HTTP & REST · Spring #3 Spring Core · Spring #4 Boot fundamentals · Spring #5 REST controllers · Spring #6 Validation & errors · Spring #7 SQL · Spring #8 Data Access I · Spring #9 Data Access II · Spring #10 Testing · Spring #11 Security · Spring #12 Production · Spring #13 Advanced · Spring #14 Deployment · Spring #15 Capstone · Spring #16 Messaging · Spring #17 Microservices · Spring #18 MongoDB · (files 19–18 as they're written)
@@ -534,9 +553,9 @@ For Java backend jobs and internships, after the core path. Start once you've do
 [v19]: kunal-java-notes-claude/java_19_video_insertion_sort.md
 [v20]: kunal-java-notes-claude/java_20_video_cyclic_sort.md
 [v21]: kunal-java-notes-claude/java_21_video_strings_stringbuilder.md
-[v22]: kunal-java-notes-claude/java_22_video_patterns.md
 [v23]: kunal-java-notes-claude/java_23_video_recursion_intro.md
 [v24]: kunal-java-notes-claude/java_24_video_time_space_complexity.md
+[v24bigo]: kunal-java-notes-claude/java_24_video_time_space_complexity.md#0-introduction-000
 [v24rec]: kunal-java-notes-claude/java_24_video_time_space_complexity.md#13-complexity-analysis-recursive-programs-10557
 [v25]: kunal-java-notes-claude/java_25_video_bitwise_number_systems.md
 [v26]: kunal-java-notes-claude/java_26_video_maths_for_dsa.md

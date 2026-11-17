@@ -12,9 +12,12 @@ A comprehensive deep-dive into Object-Oriented Programming in Java, covering eve
 5. [Constructors](#5-constructors)
 6. [The `this` Keyword](#6-the-this-keyword)
 7. [Constructor Overloading](#7-constructor-overloading)
-8. [Wrapper Classes](#8-wrapper-classes)
-9. [The `final` Keyword](#9-the-final-keyword)
-10. [Garbage Collection](#10-garbage-collection)
+8. [The `new` Keyword & Memory — Deep Dive](#8-the-new-keyword--memory--deep-dive)
+9. [Wrapper Classes](#9-wrapper-classes)
+10. [The `final` Keyword](#10-the-final-keyword)
+11. [Garbage Collection](#11-garbage-collection)
+12. [Complete Example: Everything Together](#-complete-example-everything-together)
+13. [Quick Reference Cheat Sheet](#quick-reference-cheat-sheet)
 
 ---
 
