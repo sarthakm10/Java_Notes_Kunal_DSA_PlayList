@@ -1,0 +1,17 @@
+# Profile "test": tests use their own schema, so running them never touches the app's data.
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springnotes?currentSchema=tracker10_test
+  flyway:
+    schemas: tracker10_test
+  jpa:
+    properties:
+      hibernate:
+        default_schema: tracker10_test
+
+logging:
+  level:
+    org.hibernate.SQL: WARN               # keep test output short: tests count statements instead
+    com.zaxxer.hikari: WARN
+    org.flywaydb: WARN
+    org.springframework.boot.tomcat: WARN

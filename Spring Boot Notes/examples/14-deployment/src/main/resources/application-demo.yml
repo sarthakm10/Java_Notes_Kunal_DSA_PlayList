@@ -1,0 +1,8 @@
+# Profile "demo": AdvancedDemo runs; make the scheduled job and the timing aspect visible.
+app:
+  reminder:
+    rate: PT1S                            # every second instead of every hour
+
+logging:
+  level:
+    com.notes.tasks.aop: DEBUG            # TimingAspect logs every service call

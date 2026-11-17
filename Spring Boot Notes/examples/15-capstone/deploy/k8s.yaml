@@ -1,0 +1,100 @@
+# kubectl apply -f deploy/k8s.yaml
+# The Secret is created separately, never from a file in git:
+#   kubectl create secret generic task-tracker-secrets \
+#     --from-file=spring.datasource.password=./db_password.txt --from-file=app.jwt.secret=./jwt_secret.txt
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: task-tracker-config
+data:
+  DB_URL: jdbc:postgresql://postgres:5432/springnotes?currentSchema=tracker15
+  DB_USERNAME: springnotes
+  HOLIDAYS_URL: http://holidays:8080
+  APP_JWT_LIFETIME: PT15M                  # relaxed binding: APP_JWT_LIFETIME -> app.jwt.lifetime
+  SECRETS_DIR: /etc/task-tracker/secrets   # our own folder: /run/secrets (= /var/run/secrets on many images)
+                                           # is where Kubernetes mounts the service-account token
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-tracker
+  labels:
+    app: task-tracker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: task-tracker
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0                    # keep full capacity during a rollout
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: task-tracker
+      # No "prometheus.io/scrape" annotations: /actuator/prometheus needs ADMIN (HTTP Basic) in this app,
+      # so the scraper must be configured with credentials (e.g. a ServiceMonitor with basicAuth).
+    spec:
+      terminationGracePeriodSeconds: 45    # > preStop sleep (10 s) + Spring's shutdown phase (20 s)
+      containers:
+        - name: app
+          image: ghcr.io/example/task-tracker:0.15.0
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: task-tracker-config
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+          volumeMounts:
+            - name: secrets                # each key of the Secret becomes a file = the configtree
+              mountPath: /etc/task-tracker/secrets
+              readOnly: true
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              memory: 768Mi                # MaxRAMPercentage=75 -> about 576 MB heap
+          startupProbe:                    # slow start allowed: up to 30 x 5 s = 150 s
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+            periodSeconds: 5
+            failureThreshold: 30
+          livenessProbe:                   # failing = restart the container
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:                  # failing = take it out of the Service, no restart
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
+            periodSeconds: 5
+            failureThreshold: 2
+          lifecycle:
+            preStop:                       # give the load balancer time to stop sending traffic
+              exec:
+                command: ["sleep", "10"]
+      volumes:
+        - name: secrets
+          secret:
+            secretName: task-tracker-secrets
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: task-tracker
+spec:
+  selector:
+    app: task-tracker
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

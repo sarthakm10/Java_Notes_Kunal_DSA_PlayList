@@ -1,0 +1,36 @@
+# Shared by EVERY client of the config server (user-service, task-service, gateway).
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    registry-fetch-interval-seconds: 2          # default 30: how often a client refreshes its copy of the registry
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 2        # heartbeat; default 30
+    lease-expiration-duration-in-seconds: 6     # evicted after this long without one; default 90
+    hostname: localhost                         # advertise http://localhost:<port> (one machine); real hosts
+                                                # use their own name or prefer-ip-address: true
+
+spring:
+  main:
+    banner-mode: off
+  cloud:
+    loadbalancer:
+      cache:
+        ttl: 2s                                 # default 35s: how long the load balancer caches instance lists
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0                          # default 0.1: trace every request (fine for a demo, not for production)
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+logging:
+  level:
+    root: WARN
+    com.notes: INFO
+    org.springframework.boot.tomcat: INFO

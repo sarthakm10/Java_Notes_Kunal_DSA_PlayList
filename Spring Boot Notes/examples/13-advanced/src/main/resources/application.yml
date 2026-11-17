@@ -1,0 +1,112 @@
+spring:
+  application:
+    name: task-tracker
+  main:
+    banner-mode: off
+  threads:
+    virtual:
+      enabled: true                       # Tomcat (and @Async, schedulers) run requests on virtual threads
+  task:
+    execution:
+      mode: force                         # keep Boot's applicationTaskExecutor for plain @Async, even though
+                                          # we define our own executor bean (default "auto" backs off)
+  lifecycle:
+    timeout-per-shutdown-phase: 20s       # graceful shutdown waits at most this long for running requests
+  cache:
+    type: caffeine                        # explicit: hibernate-jcache is on the classpath, and Boot
+                                          # would otherwise pick JCache (with no caches defined)
+    cache-names: projectSummaries, openTasks
+    caffeine:
+      spec: maximumSize=500,expireAfterWrite=10m,recordStats   # bounded + expiring + hit/miss stats
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springnotes?currentSchema=tracker13
+    username: springnotes
+    password: ${DB_PASSWORD:springnotes}   # env var wins; the default is the throwaway practice password
+    hikari:
+      maximum-pool-size: 5                # default 10
+      pool-name: Tracker13Pool
+  flyway:
+    schemas: tracker13                    # Flyway creates this schema and owns its history table
+  data:
+    web:
+      pageable:
+        default-page-size: 5
+        max-page-size: 50
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: tracker13
+        cache:
+          use_second_level_cache: true
+          region:
+            factory_class: jcache
+        javax:
+          cache:
+            provider: com.github.benmanes.caffeine.jcache.spi.CaffeineCachingProvider
+            missing_cache_strategy: create
+
+server:
+  shutdown: graceful                      # stop accepting, finish running requests, then stop (the default)
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus, loggers, env, configprops, mappings, conditions, beans, shutdown, maintenance, caches, scheduledtasks
+  endpoint:
+    health:
+      show-details: when-authorized       # anonymous callers see only {"status":"UP"}
+      roles: ADMIN
+      probes:
+        enabled: true                     # /actuator/health/liveness and /readiness (always on in Kubernetes)
+      group:
+        readiness:
+          include: readinessState, db     # not ready if the database is unreachable
+    env:
+      show-values: when-authorized        # default "never": every value is ******
+      roles: ADMIN
+    configprops:
+      show-values: when-authorized
+      roles: ADMIN
+    shutdown:
+      access: unrestricted                # off by default; POST /actuator/shutdown stops the app
+  info:
+    env:
+      enabled: true                       # publish the info.* properties below
+    java:
+      enabled: true
+    os:
+      enabled: true
+  observations:
+    key-values:
+      application: task-tracker           # extra tag on every observation-based metric (e.g. http.server.requests)
+
+info:
+  app:
+    name: Task Tracker
+    description: Spring Boot notes, stage 13
+    owner: platform-team
+
+app:
+  holidays:
+    base-url: http://localhost:8089       # another team's service (a stub in the demo)
+  rate-limit:
+    capacity: 5                           # burst of 5 requests per caller...
+    refill-per-second: 0.5                # ...then one more every 2 s
+  jwt:
+    secret: ${JWT_SECRET:dev-only-secret-change-me-at-least-32-bytes}
+
+logging:
+  pattern:
+    correlation: "[%X{requestId:-}] "     # Boot puts this into its default pattern: the MDC request id
+  level:
+    root: WARN
+    com.notes: INFO
+    org.springframework.boot.tomcat: INFO
+    com.zaxxer.hikari: INFO
+    org.flywaydb: INFO
+    org.springframework.boot.actuate.endpoint.web.EndpointLinksResolver: INFO   # "Exposing N endpoints"
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: WARN

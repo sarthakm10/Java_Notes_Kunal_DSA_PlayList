@@ -1,0 +1,3 @@
+# Maven build output in the example projects
+target/
+cp.txt

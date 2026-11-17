@@ -1,0 +1,11 @@
+server:
+  port: ${PORT:8081}                      # two instances: PORT=8081 and PORT=8082
+
+spring:
+  application:
+    name: user-service                    # the name others use to find it (and the config server's file name)
+  config:
+    import: "${CONFIG_IMPORT:configserver:http://localhost:8888}"   # mandatory (no optional:): no config server, no start
+  cloud:
+    config:
+      fail-fast: true

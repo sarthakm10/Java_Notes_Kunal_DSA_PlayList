@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: task-tracker
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springnotes?currentSchema=tracker11
+    username: springnotes
+    password: ${DB_PASSWORD:springnotes}   # env var wins; the default is the throwaway practice password
+    hikari:
+      maximum-pool-size: 5                # default 10
+      pool-name: Tracker11Pool
+  flyway:
+    schemas: tracker11                    # Flyway creates this schema and owns its history table
+  data:
+    web:
+      pageable:
+        default-page-size: 5              # ?page=0&size=5 when the client sends nothing
+        max-page-size: 50                 # ?size=10000 is capped at 50
+  jpa:
+    open-in-view: false                   # no lazy loading during view rendering (file 08, Section 9)
+    hibernate:
+      ddl-auto: validate                  # Flyway creates tables; Hibernate only checks they match
+    properties:
+      hibernate:
+        default_schema: tracker11
+        cache:
+          use_second_level_cache: true
+          region:
+            factory_class: jcache
+        javax:
+          cache:
+            provider: com.github.benmanes.caffeine.jcache.spi.CaffeineCachingProvider
+            missing_cache_strategy: create
+        generate_statistics: true         # lets tests count SQL statements
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-secret-change-me-at-least-32-bytes}   # HS256 needs >= 32 bytes
+
+logging:
+  level:
+    root: WARN
+    com.notes: INFO
+    org.springframework.boot.tomcat: INFO
+    com.zaxxer.hikari: INFO               # pool start/stop lines
+    org.flywaydb: INFO                    # which migrations ran
+    org.hibernate.SQL: WARN               # file 11 is about security: SQL logging off
+    org.springframework.security.web.DefaultSecurityFilterChain: DEBUG   # lists each chain's filters at startup
+    org.springframework.security.web.FilterChainProxy: DEBUG             # "Securing GET /..." per request
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: WARN   # hide per-session metrics

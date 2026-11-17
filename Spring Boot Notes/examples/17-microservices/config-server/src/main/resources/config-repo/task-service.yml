@@ -1,0 +1,16 @@
+# Only for task-service: the circuit breaker around calls to user-service.
+app:
+  user-service:
+    timeout: 1s                       # slower answers count as failures
+    breaker:
+      window: 4                       # look at the last 4 calls...
+      failure-rate: 50                # ...open the breaker when half or more failed
+      open-for: 5s                    # then fail fast for 5 s before trying again (half-open)
+
+spring:
+  cloud:
+    circuitbreaker:
+      resilience4j:
+        disable-time-limiter: true    # the HTTP client's read timeout (above) does the timing
+        disable-thread-pool: true     # default false: each call runs on a separate thread pool (a bulkhead),
+                                      # so it leaves the request thread and its trace context

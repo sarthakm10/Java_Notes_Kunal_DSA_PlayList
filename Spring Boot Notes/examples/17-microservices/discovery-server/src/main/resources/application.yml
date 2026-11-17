@@ -1,0 +1,24 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: discovery-server
+  main:
+    banner-mode: off
+
+eureka:
+  client:
+    register-with-eureka: false           # a single registry doesn't register with itself...
+    fetch-registry: false                 # ...or copy the registry from a peer
+  server:
+    enable-self-preservation: false       # demo only: evict dead instances instead of keeping them "just in case"
+    eviction-interval-timer-in-ms: 2000   # check for expired leases every 2 s (default 60 s)
+    response-cache-update-interval-ms: 1000   # clients see changes within ~1 s (default 30 s)
+
+logging:
+  level:
+    root: WARN
+    com.notes: INFO
+    org.springframework.boot.tomcat: INFO
+    com.netflix.eureka.registry.AbstractInstanceRegistry: INFO   # "Registered instance ..." / "Cancelled instance ..."

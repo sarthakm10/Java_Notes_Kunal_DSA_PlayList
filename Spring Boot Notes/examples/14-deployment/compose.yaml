@@ -1,0 +1,44 @@
+# docker compose up --build      (needs ./secrets/db_password.txt and ./secrets/jwt_secret.txt; never commit them)
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: springnotes
+      POSTGRES_USER: springnotes
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password      # the postgres image reads the password from a file
+    secrets:
+      - db_password
+    volumes:
+      - pgdata:/var/lib/postgresql                          # postgres 18 images keep data below this folder
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U springnotes -d springnotes"]
+      interval: 5s
+      retries: 10
+
+  app:
+    build: .
+    image: task-tracker:0.14.0
+    depends_on:
+      db:
+        condition: service_healthy                          # wait for "ready", not just "started"
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/springnotes?currentSchema=tracker14
+      DB_USERNAME: springnotes
+      HOLIDAYS_URL: http://holidays.internal:8080
+    secrets:                                                # mounted as files in /run/secrets/ = the configtree
+      - source: db_password
+        target: spring.datasource.password                 # file name = property name
+      - source: jwt_secret
+        target: app.jwt.secret
+    stop_grace_period: 40s                                  # more than spring.lifecycle.timeout-per-shutdown-phase
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
+  jwt_secret:
+    file: ./secrets/jwt_secret.txt
+
+volumes:
+  pgdata:

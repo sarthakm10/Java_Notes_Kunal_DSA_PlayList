@@ -1,0 +1,33 @@
+# Defaults for every environment
+spring:
+  application:
+    name: task-tracker
+  main:
+    banner-mode: off            # hide the ASCII banner to keep the log short
+
+server:
+  port: 8080
+
+tasks:
+  display-name: Task Tracker
+  max-open-tasks: 10
+  reminder-every: 1h
+  admins:
+    - asha
+  notifications:
+    enabled: false
+
+logging:
+  level:
+    root: WARN                  # quiet log for the notes; INFO is the normal default
+    com.notes: INFO
+    org.springframework.boot.tomcat: INFO   # keep the "Tomcat started on port" line (Boot 4 package)
+
+---
+# A second document in the same file, only active with the "demo" profile
+spring:
+  config:
+    activate:
+      on-profile: demo
+tasks:
+  display-name: Task Tracker (demo)

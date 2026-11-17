@@ -33,9 +33,10 @@
 | 12 | [Phase 12: Dynamic Programming](#phase-12-dynamic-programming) | DSA (gap) |
 | 13 | [Parallel Track: Advanced Java](#parallel-track-advanced-java) | Java (gap) |
 | 14 | [Phase 13: Advanced and Optional Topics](#phase-13-advanced-and-optional-topics) | Both |
-| 15 | [Dependency Map: Which Java Topic Unlocks Which DSA Topic](#dependency-map-which-java-topic-unlocks-which-dsa-topic) | Reference |
-| 16 | [Why This Order](#why-this-order) | Reference |
-| 17 | [Progress Checklist](#progress-checklist) | Checklist |
+| 15 | [Track: Spring Boot (Backend Development)](#track-spring-boot-backend-development) | Spring |
+| 16 | [Dependency Map: Which Java Topic Unlocks Which DSA Topic](#dependency-map-which-java-topic-unlocks-which-dsa-topic) | Reference |
+| 17 | [Why This Order](#why-this-order) | Reference |
+| 18 | [Progress Checklist](#progress-checklist) | Checklist |
 
 ---
 
@@ -57,6 +58,8 @@ flowchart TD
     P12 --> P13["13. Advanced / optional"]:::muted
     P7 -.->|"start any time after phase 7"| PJ["Parallel: Advanced Java<br/>SOLID, Design Patterns,<br/>Multithreading, JVM"]:::io
     PJ -.-> P13
+    PJ -.->|"after gap #12 + multithreading"| PS["Spring Boot track<br/>Maven, HTTP/REST, Spring Core,<br/>Boot, JPA, Security, Deploy"]:::startend
+    classDef startend fill:#ccfbf1,stroke:#0d9488,stroke-width:2px,color:#0f172a
     classDef good fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#0f172a
     classDef highlight fill:#ffedd5,stroke:#ea580c,stroke-width:3px,color:#0f172a
     classDef process fill:#e0e7ff,stroke:#4f46e5,stroke-width:2px,color:#0f172a
@@ -72,6 +75,7 @@ flowchart TD
 | 🟦 Indigo | Not-covered Java features (gap notes written) |
 | 🟥 Red | The hardest phase (DP) — kept for when you're strongest |
 | 🟪 Purple | Advanced Java, run alongside the DSA phases |
+| Teal (no emoji) | Spring Boot (backend development) track |
 
 ---
 
@@ -389,6 +393,33 @@ Do these after the main path, depending on your goals.
 
 ---
 
+## Track: Spring Boot (Backend Development)
+
+For Java backend jobs and internships, after the core path. Start once you've done **phase 7** (lambdas, generics, streams), **gap #12** (JUnit, Maven basics, JDBC) and ideally **J.3 multithreading**. It can run in parallel with phases 11–12, the same way the advanced Java track does. Full plan and status: the [Spring Boot notes README][sbr].
+
+| Order | Topic | Source | Priority | Depends on |
+|---|---|---|---|---|
+| S.1 | Maven in depth | 📘 [Spring #1][s01] | 🔴 | Gap #12 |
+| S.2 | HTTP & REST basics | 📘 [Spring #2][s02] | 🔴 | Collections, exceptions |
+| S.3 | Spring Core: IoC, DI, beans, scopes, lifecycle | 📘 [Spring #3][s03] | 🔴 | OOP + interfaces (phase 6), SOLID (J.1) helps |
+| S.4 | Spring Boot fundamentals: starters, auto-configuration, config, profiles | 📘 [Spring #4][s04] | 🔴 | S.1, S.3 |
+| S.5 | REST controllers: mappings, ResponseEntity, DTOs, Jackson, versioning, filters/interceptors, HATEOAS | 📘 [Spring #5][s05] | 🔴 | S.2, S.4 |
+| S.6 | Validation & error handling: Bean Validation, custom constraints, @RestControllerAdvice, ProblemDetail | 📘 [Spring #6][s06] | 🔴 | S.5 |
+| S.7 | SQL essentials on PostgreSQL: DDL, joins, GROUP BY, window functions, indexes/EXPLAIN, transactions | 📘 [Spring #7][s07] | 🔴 | Gap #12 (JDBC) |
+| S.8 | Data access I: JdbcTemplate/JdbcClient, JPA, entity lifecycle, caches, relationships, Flyway, HikariCP | 📘 [Spring #8][s08] | 🔴 | S.7 |
+| S.9 | Data access II: derived/JPQL/native queries, projections, N+1, paging, Specifications, @Transactional propagation/isolation/locking | 📘 [Spring #9][s09] | 🔴 | S.8 |
+| S.10 | Testing: JUnit 5, Mockito, @WebMvcTest, @DataJpaTest, @SpringBootTest + RestTestClient, Testcontainers | 📘 [Spring #10][s10] | 🔴 | S.9 |
+| S.11 | Spring Security: CSRF/XSS/CORS/SQL injection, filter chain, DB users + BCrypt, form login, Basic, JWT, OAuth2, method security | 📘 [Spring #11][s11] | 🔴 | S.10 |
+| S.12 | Production features: logging (MDC, JSON), Actuator (health/probes, metrics, Prometheus, loggers, env), OpenAPI, virtual threads, graceful shutdown | 📘 [Spring #12][s12] | 🔴 | S.11 |
+| S.13 | Advanced Spring: AOP, @Async + ThreadPoolTaskExecutor, @Scheduled, application events, caching (Caffeine; Redis config), RestClient + HTTP interfaces, rate limiting | 📘 [Spring #13][s13] | 🔴 | S.12 |
+| S.14 | Deployment: fat jar anatomy, layered jars + jarmode=tools, startup with extracted jar + CDS, prod profile, secrets via config trees, fail-fast validated config, Dockerfile, compose, Kubernetes probes + graceful shutdown, GitHub Actions CI | 📘 [Spring #14][s14] | 🔴 | S.13 |
+| S.15 | Capstone: architecture, file-by-file growth, one request traced end to end (filters, security, MVC, transactions, SQL, events), 25-request user journey, status-code map, regressions found end to end, test pyramid (39 tests), design trade-offs, production checklist, interview pitch + question bank | 📘 [Spring #15][s15] | 🔴 | S.14 |
+| S.16 | Messaging: Kafka model (topics, partitions, offsets, consumer groups), Kafka vs RabbitMQ, KafkaTemplate + @KafkaListener, transactional outbox, idempotent consumer, retries + dead-letter topic, key/partition collisions measured, embedded-broker tests (43 tests), RabbitMQ config | 📘 [Spring #16][s16] | 🔴 | S.15 |
+| S.17 | Microservices: monolith vs services, Spring Cloud Config, Eureka discovery, @LoadBalanced RestClient + @HttpExchange, Gateway (Server MVC), distributed tracing (Brave), Resilience4j circuit breaker + fallback measured, instance crash window, testing services alone, sagas/CQRS, Kubernetes equivalents | 📘 [Spring #17][s17] | 🔴 | S.16 |
+| S.18 | MongoDB with Spring Data: embed vs reference, @Document mapping (records, enums, LocalDate time-zone trap + native codecs), @DocumentReference, repositories, MongoTemplate Criteria + $push updates (auto $inc on @Version), aggregation pipelines, indexes (ESR, auto-index startup trap), atomicity/transactions, schema evolution, testing | 📘 [Spring #18][s18] | 🟢 | S.17 |
+
+---
+
 ## Dependency Map: Which Java Topic Unlocks Which DSA Topic
 
 | Java topic | Phase | Unlocks in DSA |
@@ -481,6 +512,9 @@ Do these after the main path, depending on your goals.
 
 **Phase 13 — Optional**
 - [ ] KMP / Z / Manacher · Fenwick / lazy segment tree / sparse table · Gap #11 Serialization, Reflection, Regex, `java.time` · Gap #12 JUnit, Maven, JDBC
+
+**Track — Spring Boot**
+- [ ] Spring #1 Maven · Spring #2 HTTP & REST · Spring #3 Spring Core · Spring #4 Boot fundamentals · Spring #5 REST controllers · Spring #6 Validation & errors · Spring #7 SQL · Spring #8 Data Access I · Spring #9 Data Access II · Spring #10 Testing · Spring #11 Security · Spring #12 Production · Spring #13 Advanced · Spring #14 Deployment · Spring #15 Capstone · Spring #16 Messaging · Spring #17 Microservices · Spring #18 MongoDB · (files 19–18 as they're written)
 
 [v04]: kunal-java-notes-claude/java_04_video_git_github.md
 [v05]: kunal-java-notes-claude/java_05_video_intro_programming.md
@@ -583,3 +617,22 @@ Do these after the main path, depending on your goals.
 [d16]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_16_maths_extras.md
 [g11]: Java%20Topics%20Not%20Covered%20Notes/java_gap_11_serialization_reflection_regex_time.md
 [g12]: Java%20Topics%20Not%20Covered%20Notes/java_gap_12_junit_maven_gradle_jdbc.md
+[sbr]: Spring%20Boot%20Notes/README.md
+[s01]: Spring%20Boot%20Notes/spring_01_maven_in_depth.md
+[s02]: Spring%20Boot%20Notes/spring_02_http_rest_basics.md
+[s03]: Spring%20Boot%20Notes/spring_03_spring_core_ioc_di.md
+[s04]: Spring%20Boot%20Notes/spring_04_spring_boot_fundamentals.md
+[s05]: Spring%20Boot%20Notes/spring_05_rest_controllers.md
+[s06]: Spring%20Boot%20Notes/spring_06_validation_error_handling.md
+[s07]: Spring%20Boot%20Notes/spring_07_sql_essentials.md
+[s08]: Spring%20Boot%20Notes/spring_08_data_access_jdbc_jpa.md
+[s09]: Spring%20Boot%20Notes/spring_09_queries_transactions.md
+[s10]: Spring%20Boot%20Notes/spring_10_testing.md
+[s11]: Spring%20Boot%20Notes/spring_11_security.md
+[s12]: Spring%20Boot%20Notes/spring_12_production_features.md
+[s13]: Spring%20Boot%20Notes/spring_13_advanced_spring.md
+[s14]: Spring%20Boot%20Notes/spring_14_deployment.md
+[s15]: Spring%20Boot%20Notes/spring_15_capstone.md
+[s16]: Spring%20Boot%20Notes/spring_16_messaging.md
+[s17]: Spring%20Boot%20Notes/spring_17_microservices.md
+[s18]: Spring%20Boot%20Notes/spring_18_mongodb.md

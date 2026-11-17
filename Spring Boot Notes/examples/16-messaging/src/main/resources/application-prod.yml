@@ -1,0 +1,40 @@
+# Profile "prod". Rule: nothing secret lives in this file, and nothing falls back to a development default.
+spring:
+  config:
+    import: optional:configtree:${SECRETS_DIR:/run/secrets}/   # every FILE in that folder becomes a property:
+                                                              # file name = key, file content = value
+  datasource:
+    url: ${DB_URL}                        # no default. If unset, the binder keeps the text "${DB_URL}" and
+                                          # startup fails later: 'url' must start with "jdbc" (see the notes)
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}              # a secrets file named spring.datasource.password wins over this line
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}                 # same: a secrets file named app.jwt.secret wins
+  holidays:
+    base-url: ${HOLIDAYS_URL}
+
+logging:
+  structured:
+    format:
+      console: ecs                        # JSON lines for the log platform (file 12)
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus # only what the platform needs: probes, build info, scraping
+  endpoint:
+    shutdown:
+      access: none                        # the orchestrator stops the app with SIGTERM, not over HTTP
+    env:
+      show-values: never                  # no secrets through /actuator/env, even if someone exposes it
+    configprops:
+      show-values: never
+
+springdoc:
+  api-docs:
+    enabled: false                        # no public API description in production
+  swagger-ui:
+    enabled: false

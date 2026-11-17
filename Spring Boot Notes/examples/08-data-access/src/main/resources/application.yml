@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: task-tracker
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springnotes?currentSchema=tracker
+    username: springnotes
+    password: ${DB_PASSWORD:springnotes}   # env var wins; the default is the throwaway practice password
+    hikari:
+      maximum-pool-size: 5                # default 10
+      pool-name: TrackerPool
+  flyway:
+    schemas: tracker                      # Flyway creates this schema and owns its history table
+  jpa:
+    open-in-view: false                   # no lazy loading during view rendering (see Section 9)
+    hibernate:
+      ddl-auto: validate                  # Flyway creates tables; Hibernate only checks they match
+    properties:
+      hibernate:
+        default_schema: tracker
+        cache:
+          use_second_level_cache: true
+          region:
+            factory_class: jcache
+        javax:
+          cache:
+            provider: com.github.benmanes.caffeine.jcache.spi.CaffeineCachingProvider
+            missing_cache_strategy: create
+        generate_statistics: true         # lets the demo read cache hit/miss counters
+
+logging:
+  level:
+    root: WARN
+    com.notes: INFO
+    org.springframework.boot.tomcat: INFO
+    com.zaxxer.hikari: INFO               # pool start/stop lines
+    org.flywaydb: INFO                    # which migrations ran
+    org.hibernate.SQL: DEBUG              # every SQL statement Hibernate sends
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: WARN   # hide per-session metrics

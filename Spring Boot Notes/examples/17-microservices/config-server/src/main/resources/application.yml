@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  main:
+    banner-mode: off
+  profiles:
+    active: native                        # files instead of a Git repository (the default backend)
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-repo/   # application.yml = shared, {name}.yml = per service
+
+logging:
+  level:
+    root: WARN
+    com.notes: INFO
+    org.springframework.boot.tomcat: INFO

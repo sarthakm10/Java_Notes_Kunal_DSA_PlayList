@@ -7,6 +7,7 @@
 > - Java gap notes: [`Java Topics Not Covered Notes/`](Java%20Topics%20Not%20Covered%20Notes/)
 > - DSA gap notes: [`DSA Topics Not Covered Notes/`](DSA%20Topics%20Not%20Covered%20Notes/)
 > - The order to study everything in (playlist videos and gap topics together): [java_dsa_study_roadmap.md](java_dsa_study_roadmap.md)
+> - Backend development (Maven, HTTP/REST, Spring, Spring Boot, SQL, JPA, Security…) is a separate track: [`Spring Boot Notes/`](Spring%20Boot%20Notes/README.md), all 18 files written
 
 **Priority:** 🔴 asked very often in interviews · 🟡 useful · 🟢 nice to know
 
@@ -131,6 +132,26 @@ Tick these off as you learn them.
 - [ ] Serialization, Reflection, Regex, `java.time` — [notes][j11]
 - [ ] JUnit, Maven/Gradle, JDBC — [notes][j12]
 
+**Spring Boot track** (full list in the [Spring Boot notes README][sbr])
+- [ ] Maven in depth — [notes][s01]
+- [ ] HTTP & REST basics — [notes][s02]
+- [ ] Spring Core: IoC, DI, beans — [notes][s03]
+- [ ] Spring Boot fundamentals — [notes][s04]
+- [ ] REST controllers, filters & interceptors, HATEOAS — [notes][s05]
+- [ ] Validation & error handling (ProblemDetail) — [notes][s06]
+- [ ] SQL essentials (joins, window functions, indexes) — [notes][s07]
+- [ ] Data access I (JDBC, JPA, Flyway) — [notes][s08]
+- [ ] Data access II (queries, transactions) — [notes][s09]
+- [ ] Testing (unit, slices, integration) — [notes][s10]
+- [ ] Spring Security: filter chain, BCrypt users, form login + CSRF, JWT resource server, OAuth2 concepts, @PreAuthorize/@PostAuthorize — [notes][s11]
+- [ ] Production: SLF4J + MDC + JSON logs, Actuator health/probes/metrics/Prometheus, springdoc OpenAPI, virtual threads, graceful shutdown — [notes][s12]
+- [ ] Advanced: AOP aspects + proxy rules, @Async thread pools, @Scheduled, @TransactionalEventListener, @Cacheable (Caffeine/Redis), RestClient, token-bucket rate limiting — [notes][s13]
+- [ ] Deployment: fat jar, layers, CDS, prod config + secrets, Docker, Kubernetes, CI — [notes][s14]
+- [ ] Capstone: end-to-end trace, user journey, regressions caught, test suite, interview prep — [notes][s15]
+- [ ] Messaging with Kafka: outbox, idempotent consumer, retries + DLT, embedded-broker tests — [notes][s16]
+- [ ] Microservices: config server, Eureka, load balancing, gateway, tracing, circuit breaker — [notes][s17]
+- [ ] MongoDB with Spring Data — [notes][s18]
+
 **DSA**
 - [ ] Dynamic Programming — [notes][t01]
 - [ ] Graphs (BFS/DFS, topological sort, Dijkstra, MST) — [notes][t02]
@@ -197,3 +218,22 @@ Tick these off as you learn them.
 [d14]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_14_string_algorithms.md
 [d15]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_15_range_query_structures.md
 [d16]: DSA%20Topics%20Not%20Covered%20Notes/dsa_gap_16_maths_extras.md
+[sbr]: Spring%20Boot%20Notes/README.md
+[s01]: Spring%20Boot%20Notes/spring_01_maven_in_depth.md
+[s02]: Spring%20Boot%20Notes/spring_02_http_rest_basics.md
+[s03]: Spring%20Boot%20Notes/spring_03_spring_core_ioc_di.md
+[s04]: Spring%20Boot%20Notes/spring_04_spring_boot_fundamentals.md
+[s05]: Spring%20Boot%20Notes/spring_05_rest_controllers.md
+[s06]: Spring%20Boot%20Notes/spring_06_validation_error_handling.md
+[s07]: Spring%20Boot%20Notes/spring_07_sql_essentials.md
+[s08]: Spring%20Boot%20Notes/spring_08_data_access_jdbc_jpa.md
+[s09]: Spring%20Boot%20Notes/spring_09_queries_transactions.md
+[s10]: Spring%20Boot%20Notes/spring_10_testing.md
+[s11]: Spring%20Boot%20Notes/spring_11_security.md
+[s12]: Spring%20Boot%20Notes/spring_12_production_features.md
+[s13]: Spring%20Boot%20Notes/spring_13_advanced_spring.md
+[s14]: Spring%20Boot%20Notes/spring_14_deployment.md
+[s15]: Spring%20Boot%20Notes/spring_15_capstone.md
+[s16]: Spring%20Boot%20Notes/spring_16_messaging.md
+[s17]: Spring%20Boot%20Notes/spring_17_microservices.md
+[s18]: Spring%20Boot%20Notes/spring_18_mongodb.md

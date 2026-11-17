@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: task-docs
+  main:
+    banner-mode: off
+  mongodb:
+    uri: ${MONGODB_URI:mongodb://localhost:27017/tasks}   # Boot 4: spring.mongodb.* (Boot 3: spring.data.mongodb.*)
+  data:
+    mongodb:
+      auto-index-creation: true          # create the @Indexed / @CompoundIndex indexes at startup (off by default)

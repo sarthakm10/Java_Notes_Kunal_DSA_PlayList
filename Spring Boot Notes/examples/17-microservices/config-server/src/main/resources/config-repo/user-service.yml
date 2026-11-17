@@ -1,0 +1,3 @@
+# Only for user-service. Change it here, not in the service's jar.
+app:
+  greeting: "Hello from the config server"

@@ -1,0 +1,11 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: task-service
+  config:
+    import: "${CONFIG_IMPORT:configserver:http://localhost:8888}"
+  cloud:
+    config:
+      fail-fast: true

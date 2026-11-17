@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: task-tracker
+  main:
+    banner-mode: off
+  mvc:
+    apiversion:
+      use:
+        header: API-Version        # read the version from this request header
+      default: "1"                 # no header -> version 1
+      supported: "1,2"
+  servlet:
+    multipart:
+      max-file-size: 100KB         # default is 1MB; bigger uploads are rejected
+
+server:
+  port: 8080
+
+tasks:
+  max-open-tasks: 100
+  fixed-clock: 2026-11-16T09:00:00Z   # predictable createdAt for the notes; remove for real time
+
+logging:
+  level:
+    root: WARN
+    com.notes: INFO
+    org.springframework.boot.tomcat: INFO

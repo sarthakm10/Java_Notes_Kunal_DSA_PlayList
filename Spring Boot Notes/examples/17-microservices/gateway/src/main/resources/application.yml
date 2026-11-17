@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  config:
+    import: "${CONFIG_IMPORT:configserver:http://localhost:8888}"
+  cloud:
+    config:
+      fail-fast: true
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: users
+              uri: lb://user-service          # lb:// = look the name up in Eureka, pick an instance
+              predicates:
+                - Path=/api/users/**
+              filters:
+                - StripPrefix=1               # /api/users/1 -> /users/1
+                - AddResponseHeader=X-Routed-By, gateway
+            - id: tasks
+              uri: lb://task-service
+              predicates:
+                - Path=/api/tasks/**
+              filters:
+                - StripPrefix=1
+                - AddResponseHeader=X-Routed-By, gateway

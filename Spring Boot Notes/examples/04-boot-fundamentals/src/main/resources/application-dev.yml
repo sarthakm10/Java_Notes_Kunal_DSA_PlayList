@@ -1,0 +1,9 @@
+# Loaded on top of application.yml when the "dev" profile is active
+tasks:
+  display-name: Task Tracker (dev)
+  max-open-tasks: 3
+  reminder-every: 30s
+  admins: asha,ravi             # a comma-separated string also binds to List<String>
+  notifications:
+    enabled: true
+    channel: console
