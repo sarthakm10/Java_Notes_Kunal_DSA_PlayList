@@ -1,3 +1,5 @@
+package com.JavaFoundation;
+
 public class ReportCard {
     public static void main(String[] args) {
         String name = "Sarthak";

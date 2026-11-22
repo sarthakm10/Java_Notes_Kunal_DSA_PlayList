@@ -1,4 +1,4 @@
-package src.com.Phase2.BasicString;
+package com.Phase2.BasicString;
 
 public class StringCompression {
      public static void main(String[] args) {

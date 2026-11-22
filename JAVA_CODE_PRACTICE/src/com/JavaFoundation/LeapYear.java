@@ -1,3 +1,5 @@
+package com.JavaFoundation;
+
 public class LeapYear {
     public static void main(String[] args) {
         int year1 = 2000;

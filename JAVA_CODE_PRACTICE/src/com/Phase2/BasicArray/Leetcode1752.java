@@ -1,4 +1,4 @@
-package src.com.Phase2.BasicArray;
+package com.Phase2.BasicArray;
 
 //https://leetcode.com/problems/check-if-array-is-sorted-and-rotated
 /* Example 1:

@@ -1,4 +1,4 @@
-package src.com.Phase2.BasicArray;
+package com.Phase2.BasicArray;
 
 import java.util.Arrays;
 

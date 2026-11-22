@@ -1,4 +1,4 @@
-package src.com.Phase2.BasicString;
+package com.Phase2.BasicString;
 
 //https://leetcode.com/problems/valid-palindrome/description/
 /* 

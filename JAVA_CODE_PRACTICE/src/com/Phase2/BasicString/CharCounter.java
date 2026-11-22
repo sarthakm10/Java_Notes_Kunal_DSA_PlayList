@@ -1,4 +1,4 @@
-package src.com.Phase2.BasicString;
+package com.Phase2.BasicString;
 
 public class CharCounter {
     public static void main(String[] args) {

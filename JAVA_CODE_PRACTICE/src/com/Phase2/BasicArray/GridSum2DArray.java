@@ -1,4 +1,4 @@
-package src.com.Phase2.BasicArray;
+package com.Phase2.BasicArray;
 
 public class GridSum2DArray {
     public static void main(String[] args) {

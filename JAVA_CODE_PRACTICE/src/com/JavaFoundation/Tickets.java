@@ -1,3 +1,5 @@
+package com.JavaFoundation;
+
 public class Tickets {
     public static void main(String[] args) {
         System.out.println(ticketPrice(2, true, false));

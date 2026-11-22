@@ -1,3 +1,5 @@
+package com.JavaFoundation;
+
 public class Grades {
     public static void main(String[] args) {
         int marks1 = 90;

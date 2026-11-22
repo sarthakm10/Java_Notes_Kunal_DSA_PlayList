@@ -1,3 +1,5 @@
+package com.JavaFoundation;
+
 public class Primes {
     public static void main(String[] args) {
         int n1 = 53;

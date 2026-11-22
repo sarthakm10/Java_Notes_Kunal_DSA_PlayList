@@ -1,3 +1,5 @@
+package com.JavaFoundation;
+
 public class Temperature {
     public static void main(String[] args) {
         double tempF = 98.6;
