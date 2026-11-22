@@ -122,6 +122,6 @@ class TaskControllerTest {
         verify(service).search(eq(false), isNull(), eq("meera"), isNull(), isNull(), pageable.capture());
         assertThat(pageable.getValue().getPageNumber()).isEqualTo(1);
         assertThat(pageable.getValue().getPageSize()).isEqualTo(2);
-        assertThat(pageable.getValue().getSort()).isEqualTo(Sort.by(Sort.Direction.DESC, "dueDate"));
+        assertThat(pageable.getValue().getSort()).isEqualTo(Sort.by(Sort.Direction.DESC, Task::getDueDate));
     }
 }

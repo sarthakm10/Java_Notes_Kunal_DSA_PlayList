@@ -31,7 +31,7 @@ public class TaskService {
     /** true if the task existed. No read-modify-write: the server appends the comment atomically. */
     public boolean addComment(String taskId, String author, String text) {
         var comment = new Task.Comment(author, text, Instant.now(clock));
-        return mongo.updateFirst(Query.query(Criteria.where("id").is(taskId)), TaskQueries.addComment(comment),
+        return mongo.updateFirst(Query.query(Criteria.where(Task::getId).is(taskId)), TaskQueries.addComment(comment),
                 Task.class).getMatchedCount() == 1;
     }
 

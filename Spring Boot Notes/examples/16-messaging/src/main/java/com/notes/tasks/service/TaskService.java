@@ -82,7 +82,7 @@ public class TaskService {
     private PageResponse<TaskResponse> doSearch(Boolean done, Priority priority, String assignee, String tag,
                                                 LocalDate dueBefore, Pageable pageable) {
         Pageable stable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
-                pageable.getSort().and(Sort.by("id")));                 // id breaks ties: pages never overlap
+                pageable.getSort().and(Sort.by(Task::getId)));                 // id breaks ties: pages never overlap
         Page<Task> page = tasks.findAll(TaskSpecs.matching(done, priority, assignee, tag, dueBefore), stable);
         if (page.hasContent()) {
             tasks.fetchTags(page.map(Task::getId).getContent());          // tags for the whole page in one query

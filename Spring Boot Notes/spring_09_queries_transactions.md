@@ -414,9 +414,12 @@ The real API run, `GET /api/tasks?size=1000&sort=id,desc&done=true`, answered wi
 
 | Rule | Why |
 |---|---|
-| **Always add a unique tie-breaker** to the sort (`Sort.by("id")`) | Many tasks share a `dueDate`. Without a unique last column, the database may order ties differently per query, and the same row can appear on page 0 *and* page 1 |
+| **Always add a unique tie-breaker** to the sort (`Sort.by(Task::getId)`) | Many tasks share a `dueDate`. Without a unique last column, the database may order ties differently per query, and the same row can appear on page 0 *and* page 1 |
 | **Don't page a collection `JOIN FETCH`** | Hibernate can't put `LIMIT` on a query that returns several rows per task. It loads **everything** and pages in memory (warning below) |
 | **Return your own page DTO**, not `Page`/`PageImpl` | `PageImpl`'s JSON is an implementation detail (Spring Data warns about serializing it). `PageResponse` below is stable; `@EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO)` is the built-in alternative |
+
+> [!TIP]
+> **`Sort.by(Task::getId)` instead of `Sort.by("id")`.** In Spring Data 2026.1 (the version in Boot 4.2) `Sort.by` also takes method references. Spring Data turns the getter back into the property name (`getDueDate` gives `dueDate`), so the SQL is the same, but a typo or a renamed field fails at compile time instead of throwing `PropertyReferenceException` at runtime. VS Code's Spring tools flag the string form as *"Non type-safe property reference"*. Boot 4.0 (Spring Data 2025.1) has only the string form. Sorts coming from the client (`?sort=dueDate,desc`) are still strings, which is why the `PropertyReferenceException` handler stays.
 
 The collection-fetch warning, real (demo step 3):
 
@@ -433,7 +436,7 @@ The SQL after it has **no** `fetch first` clause. With a million tasks, this loa
 public PageResponse<TaskResponse> search(Boolean done, Priority priority, String assignee, String tag,
                                          LocalDate dueBefore, Pageable pageable) {
     Pageable stable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
-            pageable.getSort().and(Sort.by("id")));                 // id breaks ties: pages never overlap
+            pageable.getSort().and(Sort.by(Task::getId)));                 // id breaks ties: pages never overlap
     Page<Task> page = tasks.findAll(TaskSpecs.matching(done, priority, assignee, tag, dueBefore), stable);
     if (page.hasContent()) {
         tasks.fetchTags(page.map(Task::getId).getContent());          // tags for the whole page in one query
@@ -557,7 +560,7 @@ public final class TaskSpecs {
 The repository just adds `JpaSpecificationExecutor<Task>`, which provides `findAll(spec)`, `findAll(spec, pageable)`, `findAll(spec, sort)`, `count(spec)` and `exists(spec)`. Specs combine with `and`/`or`/`not`:
 
 ```java
-List<Task> open = tasks.findAll(TaskSpecs.isDone(false).and(TaskSpecs.hasTag("backend")), Sort.by("id"));
+List<Task> open = tasks.findAll(TaskSpecs.isDone(false).and(TaskSpecs.hasTag("backend")), Sort.by(Task::getId));
 ```
 
 ```
@@ -1342,7 +1345,7 @@ public class TaskService {
     public PageResponse<TaskResponse> search(Boolean done, Priority priority, String assignee, String tag,
                                              LocalDate dueBefore, Pageable pageable) {
         Pageable stable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
-                pageable.getSort().and(Sort.by("id")));                 // id breaks ties: pages never overlap
+                pageable.getSort().and(Sort.by(Task::getId)));                 // id breaks ties: pages never overlap
         Page<Task> page = tasks.findAll(TaskSpecs.matching(done, priority, assignee, tag, dueBefore), stable);
         if (page.hasContent()) {
             tasks.fetchTags(page.map(Task::getId).getContent());          // tags for the whole page in one query
@@ -1835,13 +1838,13 @@ public class QueryTxDemo implements ApplicationRunner {
     void paging() {
         step("3. Paging and sorting");
         tx.executeWithoutResult(s -> {
-            Page<Task> page = tasks.findByPriority(Priority.MEDIUM, PageRequest.of(0, 2, Sort.by("id")));
+            Page<Task> page = tasks.findByPriority(Priority.MEDIUM, PageRequest.of(0, 2, Sort.by(Task::getId)));
             say("Page: content=" + page.getContent().stream().map(Task::getId).toList()
                     + " totalElements=" + page.getTotalElements() + " totalPages=" + page.getTotalPages());
-            Slice<Task> slice = tasks.findByDone(false, PageRequest.of(0, 3, Sort.by("dueDate", "id")));
+            Slice<Task> slice = tasks.findByDone(false, PageRequest.of(0, 3, Sort.by(Task::getDueDate, Task::getId)));
             say("Slice: content=" + slice.getContent().stream().map(Task::getId).toList()
                     + " hasNext=" + slice.hasNext());
-            Page<Task> withTags = tasks.findAllWithTags(PageRequest.of(0, 3, Sort.by("id")));
+            Page<Task> withTags = tasks.findAllWithTags(PageRequest.of(0, 3, Sort.by(Task::getId)));
             say("collection fetch + paging: content=" + withTags.getContent().stream().map(Task::getId).toList());
         });
     }
@@ -1849,7 +1852,7 @@ public class QueryTxDemo implements ApplicationRunner {
     void specificationsAndCriteria() {
         step("4. Specifications and the Criteria API");
         tx.executeWithoutResult(s -> {
-            List<Task> open = tasks.findAll(TaskSpecs.isDone(false).and(TaskSpecs.hasTag("backend")), Sort.by("id"));
+            List<Task> open = tasks.findAll(TaskSpecs.isDone(false).and(TaskSpecs.hasTag("backend")), Sort.by(Task::getId));
             say("open AND tag=backend: " + open.stream().map(Task::getId).toList());
 
             CriteriaBuilder cb = em.getCriteriaBuilder();             // the same thing written by hand

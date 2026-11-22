@@ -70,7 +70,7 @@ class TaskRepositoryTest {
     void bulkUpdateCompletesOverdueTasks() {
         int changed = tasks.completeOverdue(LocalDate.of(2026, 11, 16));
         assertThat(changed).isEqualTo(3);
-        assertThat(tasks.findAll(TaskSpecs.isDone(false), Sort.by("id"))).extracting(Task::getId)
+        assertThat(tasks.findAll(TaskSpecs.isDone(false), Sort.by(Task::getId))).extracting(Task::getId)
                 .containsExactly(3L, 4L, 10L, 11L, 12L);
     }                                                                // rolled back: the next test sees 8 open tasks again
 

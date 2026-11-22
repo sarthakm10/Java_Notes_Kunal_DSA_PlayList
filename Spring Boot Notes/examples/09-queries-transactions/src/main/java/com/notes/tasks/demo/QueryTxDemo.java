@@ -121,13 +121,13 @@ public class QueryTxDemo implements ApplicationRunner {
     void paging() {
         step("3. Paging and sorting");
         tx.executeWithoutResult(s -> {
-            Page<Task> page = tasks.findByPriority(Priority.MEDIUM, PageRequest.of(0, 2, Sort.by("id")));
+            Page<Task> page = tasks.findByPriority(Priority.MEDIUM, PageRequest.of(0, 2, Sort.by(Task::getId)));
             say("Page: content=" + page.getContent().stream().map(Task::getId).toList()
                     + " totalElements=" + page.getTotalElements() + " totalPages=" + page.getTotalPages());
-            Slice<Task> slice = tasks.findByDone(false, PageRequest.of(0, 3, Sort.by("dueDate", "id")));
+            Slice<Task> slice = tasks.findByDone(false, PageRequest.of(0, 3, Sort.by(Task::getDueDate, Task::getId)));
             say("Slice: content=" + slice.getContent().stream().map(Task::getId).toList()
                     + " hasNext=" + slice.hasNext());
-            Page<Task> withTags = tasks.findAllWithTags(PageRequest.of(0, 3, Sort.by("id")));
+            Page<Task> withTags = tasks.findAllWithTags(PageRequest.of(0, 3, Sort.by(Task::getId)));
             say("collection fetch + paging: content=" + withTags.getContent().stream().map(Task::getId).toList());
         });
     }
@@ -135,7 +135,7 @@ public class QueryTxDemo implements ApplicationRunner {
     void specificationsAndCriteria() {
         step("4. Specifications and the Criteria API");
         tx.executeWithoutResult(s -> {
-            List<Task> open = tasks.findAll(TaskSpecs.isDone(false).and(TaskSpecs.hasTag("backend")), Sort.by("id"));
+            List<Task> open = tasks.findAll(TaskSpecs.isDone(false).and(TaskSpecs.hasTag("backend")), Sort.by(Task::getId));
             say("open AND tag=backend: " + open.stream().map(Task::getId).toList());
 
             CriteriaBuilder cb = em.getCriteriaBuilder();             // the same thing written by hand
