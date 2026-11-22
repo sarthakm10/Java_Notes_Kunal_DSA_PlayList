@@ -130,7 +130,7 @@ One Maven **multi-module** build holds all five. The parent fixes the versions f
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.5</version>
+        <version>4.2.0</version>
         <relativePath/>
     </parent>
 
@@ -150,7 +150,7 @@ One Maven **multi-module** build holds all five. The parent fixes the versions f
 
     <properties>
         <java.version>21</java.version>
-        <spring-cloud.version>2025.1.4</spring-cloud.version>   <!-- the release train for Boot 4.0.x -->
+        <spring-cloud.version>2026.0.0</spring-cloud.version>   <!-- the release train for Boot 4.2.x -->
     </properties>
 
     <dependencyManagement>
@@ -179,7 +179,7 @@ One Maven **multi-module** build holds all five. The parent fixes the versions f
 ```
 
 > [!NOTE]
-> Spring Cloud ships as a **release train** (`2025.1.x`, code name Oakwood) matched to a Boot line: 2025.1 targets Boot 4.0. Maven Central also had `2026.0.0-RC2` at the time of writing, the next train, not a release. Using a train that doesn't match your Boot version fails at startup with a compatibility check error.
+> Spring Cloud ships as a **release train** matched to a Boot line: `2025.1.x` (Oakwood) targets Boot 4.0 and 4.1, `2026.0.x` targets Boot 4.2. The run below used Boot 4.0.5 with 2025.1.4; the example was later moved to Boot 4.2.0 with 2026.0.0, which compiles and passes its tests. Using a train that doesn't match your Boot version fails at startup with a compatibility check error.
 
 **Startup**, in dependency order (config server, then Eureka, then the services). The output is filtered (Section 11 explains how):
 
@@ -1292,7 +1292,7 @@ Source: [`examples/17-microservices/`](examples/17-microservices/)
 
 ```
 17-microservices/
-├── pom.xml                                 parent: Boot 4.0.5 + Spring Cloud 2025.1.4 BOM, 5 modules
+├── pom.xml                                 parent: Boot 4.2.0 + Spring Cloud 2026.0.0 BOM, 5 modules
 ├── config-server/    ConfigServerApplication (@EnableConfigServer), port 8888
 │   └── src/main/resources/config-repo/     application.yml (shared), user-service.yml, task-service.yml
 ├── discovery-server/ DiscoveryServerApplication (@EnableEurekaServer), port 8761
@@ -1759,7 +1759,7 @@ curl -X POST "localhost:8081/chaos/delay?millis=2000"     # make one instance sl
 | Concept | Key point |
 |---|---|
 | When to split | For teams, scaling, release cadence; start modular, split along bounded contexts |
-| Release train | Spring Cloud `2025.1.x` ↔ Boot 4.0; import `spring-cloud-dependencies` as a BOM |
+| Release train | Spring Cloud `2025.1.x` ↔ Boot 4.0/4.1, `2026.0.x` ↔ Boot 4.2; import `spring-cloud-dependencies` as a BOM |
 | Config server | `@EnableConfigServer`; `{name}.yml` + shared `application.yml`; clients: `spring.config.import: configserver:URL` |
 | Discovery | `@EnableEurekaServer`; clients register + heartbeat; lookups by name; eventually consistent |
 | Eureka timings | Defaults 30 s heartbeat / 90 s lease / 30 s fetch; self-preservation on in production |

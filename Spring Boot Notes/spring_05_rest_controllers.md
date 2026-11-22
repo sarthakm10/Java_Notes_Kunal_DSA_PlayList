@@ -1060,7 +1060,7 @@ Source: [`examples/05-rest-controllers/`](examples/05-rest-controllers/)
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.5</version>
+        <version>4.2.0</version>
         <relativePath/>
     </parent>
 

@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.5</version>
+        <version>4.2.0</version>
         <relativePath/>
     </parent>
 
@@ -95,7 +95,7 @@
         <dependency>                            <!-- OpenAPI 3 document at /v3/api-docs + Swagger UI (not managed by Boot) -->
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>3.0.3</version>            <!-- the 3.0.x line is built against Boot 4.0.x -->
+            <version>3.2.1</version>            <!-- the 3.2.x line is built against Boot 4.2.x -->
         </dependency>
 
         <!-- ===== test dependencies (scope test: not in the jar) ===== -->

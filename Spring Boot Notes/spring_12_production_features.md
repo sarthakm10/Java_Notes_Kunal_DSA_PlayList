@@ -788,12 +788,12 @@ The load balancer stops sending traffic (503), Kubernetes does **not** restart t
 <dependency>                            <!-- OpenAPI 3 document at /v3/api-docs + Swagger UI (not managed by Boot) -->
     <groupId>org.springdoc</groupId>
     <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-    <version>3.0.3</version>            <!-- the 3.0.x line is built against Boot 4.0.x -->
+    <version>3.2.1</version>            <!-- the 3.2.x line is built against Boot 4.2.x -->
 </dependency>
 ```
 
 > [!WARNING]
-> springdoc isn't a Spring project, so Boot doesn't manage its version. **springdoc 2.x is for Boot 3; Boot 4 needs 3.x.** Check `./mvnw dependency:tree` after adding it; here it pulled only Boot 4.0.5 / Spring 7.0.6 artifacts.
+> springdoc isn't a Spring project, so Boot doesn't manage its version. **springdoc 2.x is for Boot 3; Boot 4 needs 3.x, and each 3.x minor follows a Boot minor (3.0 → Boot 4.0, 3.1 → 4.1, 3.2 → 4.2).** Check `./mvnw dependency:tree` after adding it; here it pulled only Boot 4.0.5 / Spring 7.0.6 artifacts.
 
 Annotations add what code can't say:
 

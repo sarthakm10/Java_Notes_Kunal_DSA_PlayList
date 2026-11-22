@@ -730,7 +730,7 @@ Source: [`examples/18-mongodb/`](examples/18-mongodb/)
 
 ```
 18-mongodb/
-├── pom.xml                                  Boot 4.0.5: starter-data-mongodb, webmvc, test starters
+├── pom.xml                                  Boot 4.2.0: starter-data-mongodb, webmvc, test starters
 ├── src/main/java/com/notes/mongo/
 │   ├── TaskDocsApplication.java              @EnableMongoAuditing, Clock bean
 │   ├── config/MongoConfig.java               native java.time codecs (UTC dates)

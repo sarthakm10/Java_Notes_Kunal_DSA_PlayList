@@ -84,7 +84,7 @@ Here is the POM of this file's example (trimmed). Every part maps to a Maven ide
 <parent>                                    <!-- versions, plugin config, -parameters, @..@ filtering -->
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>4.0.5</version>
+    <version>4.2.0</version>
     <relativePath/>
 </parent>
 

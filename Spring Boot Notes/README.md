@@ -10,8 +10,11 @@ These notes come after [Java gap #12](../Java%20Topics%20Not%20Covered%20Notes/j
 |---|---|
 | JDK | 21 |
 | Maven | 3.9.14, through the Maven wrapper (`./mvnw`) in each example |
-| Spring Boot | 4.0.5 (Spring Framework 7.0.6) |
+| Spring Boot | 4.2.0 (Spring Framework 7.1.0); Spring Cloud 2026.0.0 in example 17 |
 | PostgreSQL | 18 (local install), from file 07 on |
+
+> [!NOTE]
+> The examples were moved from Boot 4.0.5 to **4.2.0** on 2026-11-22 (springdoc 3.0.3 → 3.2.1, Spring Cloud 2025.1.4 → 2026.0.0). All 14 compile, and the tests that need no database, Kafka or Docker pass (04, 05, 06, 17, 18). The outputs in each file's **"What was run"** section were recorded on **4.0.5** and haven't been re-run, so versions in those logs (jar names, `Spring-Boot-Version`, library versions) still show 4.0.x.
 
 Where Spring Boot **3.x** does something differently (Jackson 2 vs 3, `javax` vs `jakarta`, test annotations), the notes say so.
 
